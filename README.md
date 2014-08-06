@@ -11,7 +11,7 @@ Helper category for making the usage of NSDates easier
 # NSDate category
 
 ## Class methods
-```objecive-c
+```objective-c
 + (BOOL)isLeapYear:(NSInteger)year;
 ```
 
