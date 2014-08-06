@@ -18,13 +18,28 @@
 #define release(obj)
 #endif
 
+
+typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
+    _ESDateComponentFlagNone = 0,
+    _ESDateComponentFlagMonth,
+    _ESDateComponentFlagDay,
+    _ESDateComponentFlagQuarter,
+    _ESDateComponentFlagWeek,
+    _ESDateComponentFlagYear,
+    _ESDateComponentFlagMinute,
+    _ESDateComponentFlagHour,
+    _ESDateComponentFlagSecond,
+    _ESDateComponentFlagWeekDay,
+    _ESDateComponentFlagEra
+};
+
 @interface ESDateHelper ()
 {
     
 }
-NSDateComponents *_dateComponentFromDictionary(NSDictionary *d, NSDate *date);
-NSDate *_dateSet(NSDate *date, NSDictionary *d);
-NSDate *_dateAdd(NSDate *date, NSDictionary *d);
+NSDateComponents *_dateComponentFromDictionary(_ESDateComponentFlag flag, NSDate *date, NSInteger value);
+NSDate *_dateSet(NSDate *date, _ESDateComponentFlag flag, NSInteger value);
+NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value);
 @end
 
 @implementation ESDateHelper
@@ -46,18 +61,18 @@ NSDate *_dateAdd(NSDate *date, NSDictionary *d);
 #pragma mark - NSDateComponents
 // ____________________________________________________________________________________________________________________
 
-NSDateComponents *_dateComponentFromDictionary(NSDictionary *d, NSDate *date)
+
+NSDateComponents *_dateComponent(_ESDateComponentFlag flag, NSDate *date, NSInteger value)
 {
     NSDateComponents *dateComponents;
-    if (d == nil) { d = @{}; }
-    
+
     if (date == nil) {
         dateComponents = [[NSDateComponents alloc] init];
         autorelease(dateComponents);
         
     } else {
         NSInteger flags = NSCalendarUnitEra | NSCalendarUnitQuarter |  NSCalendarUnitYear |  NSCalendarUnitMonth | NSCalendarUnitWeekOfYear | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
-        if (d[@"weekday"] != nil) {
+        if (flag == _ESDateComponentFlagWeekDay) {
             flags |= NSCalendarUnitWeekday;
         } else {
             flags |= NSCalendarUnitDay;
@@ -66,63 +81,61 @@ NSDateComponents *_dateComponentFromDictionary(NSDictionary *d, NSDate *date)
     }
     
     // Dates
-    if (d[@"month"] != nil) {
-        dateComponents.month = [d[@"month"] integerValue];
-    }
-    
-    if (d[@"day"] != nil) {
-        dateComponents.day = [d[@"day"] integerValue];
-    }
-    
-    if (d[@"quarter"] != nil) {
-        dateComponents.quarter = [d[@"quarter"] integerValue];
-    }
-    
-    if (d[@"weekday"] != nil) {
-        dateComponents.weekday = [d[@"weekday"] integerValue];
-    }
-    
-    if (d[@"week"] != nil) {
-        dateComponents.weekOfYear = [d[@"week"] integerValue];
-    }
-    
-    if (d[@"year"] != nil) {
-        dateComponents.year = [d[@"year"] integerValue];
-    }
-    
-    // Time
-    if (d[@"minute"] != nil) {
-        dateComponents.minute = [d[@"minute"] integerValue];
-    }
-    
-    if (d[@"hour"] != nil) {
-        dateComponents.hour = [d[@"hour"] integerValue];
-    }
-    
-    if (d[@"second"] != nil) {
-        dateComponents.second = [d[@"second"] integerValue];
+    switch (flag) {
+        case _ESDateComponentFlagNone:
+            break;
+        case _ESDateComponentFlagMonth:
+            dateComponents.month = value;
+            break;
+        case _ESDateComponentFlagEra:
+            dateComponents.era = value;
+            break;
+        case _ESDateComponentFlagYear:
+            dateComponents.year = value;
+            break;
+        case _ESDateComponentFlagWeekDay:
+            dateComponents.weekday = value;
+            break;
+        case _ESDateComponentFlagDay:
+            dateComponents.day = value;
+            break;
+        case _ESDateComponentFlagSecond:
+            dateComponents.second = value;
+            break;
+        case _ESDateComponentFlagMinute:
+            dateComponents.minute = value;
+            break;
+        case _ESDateComponentFlagHour:
+            dateComponents.hour = value;
+            break;
+        case _ESDateComponentFlagWeek:
+            dateComponents.weekOfYear = value;
+            break;
+        case _ESDateComponentFlagQuarter:
+            dateComponents.quarter = value;
+            break;
     }
     
     return dateComponents;
 }
 
 
-NSDate *_dateSet(NSDate *date, NSDictionary *d)
+NSDate *_dateSet(NSDate *date, _ESDateComponentFlag flag, NSInteger value)
 {
     if (date == nil) {
         date = [NSDate date];
     }
-    NSDateComponents *dateComponents = _dateComponentFromDictionary(d, date);
+    NSDateComponents *dateComponents = _dateComponent(flag, date, value);
     return [[NSCalendar currentCalendar] dateFromComponents:dateComponents];
 }
 
-NSDate *_dateAdd(NSDate *date, NSDictionary *d)
+NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value)
 {
     if (date == nil) {
         date = [NSDate date];
     }
     
-    NSDateComponents *dateComponents = _dateComponentFromDictionary(d, nil);
+    NSDateComponents *dateComponents = _dateComponent(flag, nil, value);
     return [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:date options:0];
 }
 
@@ -152,100 +165,98 @@ NSDate *_dateAdd(NSDate *date, NSDictionary *d)
 
 - (NSDate *)dateByAddingHours:(NSInteger)hours
 {
-    return _dateAdd(self, @{ @"hour": @(hours) });
+    return _dateAdd(self, _ESDateComponentFlagHour, hours);
 }
 
 - (NSDate *)dateBySettingHours:(NSInteger)hours
 {
-    return _dateSet(self, @{ @"hour": @(hours) });
+    return _dateSet(self, _ESDateComponentFlagHour, hours);
 }
 
 - (NSDate *)dateByAddingMinutes:(NSInteger)minutes
 {
-    return _dateAdd(self, @{ @"minute": @(minutes) });
+    return _dateAdd(self, _ESDateComponentFlagMinute, minutes);
 }
 
 - (NSDate *)dateBySettingMinutes:(NSInteger)minutes
 {
-    return _dateSet(self, @{ @"minute": @(minutes) });
+    return _dateSet(self, _ESDateComponentFlagMinute, minutes);
 }
 
 - (NSDate *)dateByAddingSeconds:(NSInteger)seconds
 {
-    return _dateAdd(self, @{ @"second": @(seconds) });
+    return _dateAdd(self, _ESDateComponentFlagSecond, seconds);
 }
 
 - (NSDate *)dateBySettingSeconds:(NSInteger)seconds
 {
-    return _dateSet(self, @{ @"second": @(seconds) });
+    return _dateSet(self, _ESDateComponentFlagSecond, seconds);
 }
 
 - (NSDate *)dateByAddingDays:(NSInteger)days
 {
-    return _dateAdd(self, @{ @"day": @(days) });
+    return _dateAdd(self, _ESDateComponentFlagDay, days);
 }
 
 - (NSDate *)dateBySettingDays:(NSInteger)days
 {
-    return _dateSet(self, @{ @"day": @(days) });
+    return _dateSet(self, _ESDateComponentFlagDay, days);
 }
 
 - (NSDate *)dateBySettingWeekDay:(NSInteger)weekday
 {
-    return _dateSet(self, @{ @"weekday": @(weekday) });
+    return _dateSet(self, _ESDateComponentFlagWeekDay, weekday);
 }
 
 - (NSDate *)dateByAddingWeeks:(NSInteger)weeks
 {
-    return _dateAdd(self, @{ @"week": @(weeks) });
+    return _dateAdd(self, _ESDateComponentFlagWeek, weeks);
 }
 
 - (NSDate *)dateBySettingWeeks:(NSInteger)weeks
 {
-    return _dateSet(self, @{ @"week": @(weeks) });
+    return _dateSet(self, _ESDateComponentFlagWeek, weeks);
 }
 
 - (NSDate *)dateByAddingMonths:(NSInteger)months
 {
-    return _dateAdd(self, @{ @"month": @(months) });
+    return _dateAdd(self, _ESDateComponentFlagMonth, months);
 }
 
 - (NSDate *)dateBySettingMonths:(NSInteger)months
 {
-    return _dateSet(self, @{ @"month": @(months) });
+    return _dateSet(self, _ESDateComponentFlagMonth, months);
 }
 
 - (NSDate *)dateByAddingYears:(NSInteger)years
 {
-    return _dateAdd(self, @{ @"year": @(years) });
+    return _dateAdd(self, _ESDateComponentFlagYear, years);
 }
 
 - (NSDate *)dateBySettingYears:(NSInteger)years
 {
-    return _dateSet(self, @{ @"year": @(years) });
+    return _dateSet(self, _ESDateComponentFlagYear, years);
 }
 
 - (NSDate *)dateByAddingQuarters:(NSInteger)quarters
 {
-    return _dateAdd(self, @{ @"quarter": @(quarters) });
+    return _dateAdd(self, _ESDateComponentFlagQuarter, quarters);
 }
 
 - (NSDate *)dateBySettingQuarters:(NSInteger)quarters
 {
-    return _dateSet(self, @{ @"quarter": @(quarters) });
+    return _dateSet(self, _ESDateComponentFlagQuarter, quarters);
 }
 
 - (NSDate *)dateByAddingEras:(NSInteger)eras
 {
-    return _dateAdd(self, @{ @"era": @(eras) });
+    return _dateAdd(self, _ESDateComponentFlagEra, eras);
 }
 
 - (NSDate *)dateBySettingEras:(NSInteger)eras
 {
-    return _dateSet(self, @{ @"era": @(eras) });
+    return _dateSet(self, _ESDateComponentFlagEra, eras);
 }
-
-
 
 - (NSDate *)dateAtBeginningOfDay
 {
@@ -347,7 +358,6 @@ NSDate *_dateAdd(NSDate *date, NSDictionary *d)
     return [self daysFromDate:date] / 7;
 }
 
-
 #pragma mark - Helpers
 // ____________________________________________________________________________________________________________________
 
@@ -369,8 +379,8 @@ NSDate *_dateAdd(NSDate *date, NSDictionary *d)
 
 - (BOOL)isSameDay:(NSDate *)date
 {
-    NSDateComponents *otherDay = _dateComponentFromDictionary(nil, self);
-    NSDateComponents *today = _dateComponentFromDictionary(nil, date);
+    NSDateComponents *otherDay = _dateComponent(_ESDateComponentFlagNone, self, 0);
+    NSDateComponents *today = _dateComponent(_ESDateComponentFlagNone, date, 0);
     return ([today day] == [otherDay day] &&
             [today month] == [otherDay month] &&
             [today year] == [otherDay year] &&
@@ -379,16 +389,20 @@ NSDate *_dateAdd(NSDate *date, NSDictionary *d)
 
 - (NSDate *)dateByAddingComponents:(NSDateComponentsBlock)block
 {
-    if (block == nil) { return [self dateByAddingDays:0]; }
-    __weakblock NSDateComponents *comp = _dateComponentFromDictionary(nil, nil);
+    if (block == nil) {
+        return [self dateByAddingDays:0];
+    }
+    __weakblock NSDateComponents *comp = _dateComponent(_ESDateComponentFlagNone, nil, 0);
     block(comp);
     return [[NSCalendar currentCalendar] dateByAddingComponents:comp toDate:self options:0];
 }
 
 - (NSDate *)dateBySettingComponents:(NSDateComponentsBlock)block
 {
-    if (block == nil) { return [self dateByAddingDays:0]; }
-    __weakblock NSDateComponents *comp = _dateComponentFromDictionary(nil, self);
+    if (block == nil) {
+        return [self dateByAddingDays:0];
+    }
+    __weakblock NSDateComponents *comp = _dateComponent(_ESDateComponentFlagNone, self, 0);
     block(comp);
     return [[NSCalendar currentCalendar] dateFromComponents:comp];
 }
