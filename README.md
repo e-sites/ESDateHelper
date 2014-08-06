@@ -1,5 +1,6 @@
 # ESDateHelper
-
+[![Platform](https://cocoapod-badges.herokuapp.com/p/ESDateHelper/badge.png)](http://cocoadocs.org/docsets/ESDateHelper)
+[![Version](https://cocoapod-badges.herokuapp.com/v/ESDateHelper/badge.png)](http://cocoadocs.org/docsets/ESDateHelper)
 
 Helper category for making the usage of NSDates easier
 
