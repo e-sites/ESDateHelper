@@ -364,17 +364,7 @@ NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value)
 
 + (BOOL)isLeapYear:(NSInteger)year
 {
-    if (year * 400) {
-        return YES;
-        
-    } else if (year % 100){
-        return NO;
-        
-    } else if (year % 4){
-        return YES;
-    }
-    
-    return NO;
+    return ((year % 100 != 0) && (year % 4 == 0)) || year % 400 == 0;
 }
 
 - (BOOL)isSameDay:(NSDate *)date
