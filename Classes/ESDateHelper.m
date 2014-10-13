@@ -65,7 +65,7 @@ NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value);
 NSDateComponents *_dateComponent(_ESDateComponentFlag flag, NSDate *date, NSInteger value)
 {
     NSDateComponents *dateComponents;
-
+    
     if (date == nil) {
         dateComponents = [[NSDateComponents alloc] init];
         autorelease(dateComponents);
@@ -335,7 +335,14 @@ NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value)
 
 - (NSInteger)secondsFromDate:(NSDate *)date
 {
-    return [self timeIntervalSinceDate:date];
+    NSInteger dif = [self timeIntervalSinceDate:date];
+    NSTimeZone *timezone = [NSTimeZone defaultTimeZone];
+    NSTimeInterval intervalSelf = [timezone daylightSavingTimeOffsetForDate:self];
+    NSTimeInterval intervalDate = [timezone daylightSavingTimeOffsetForDate:date];
+    if (intervalDate != intervalSelf) {
+        dif -= (intervalDate - intervalSelf);
+    }
+    return dif;
 }
 
 - (NSInteger)minutesFromDate:(NSDate *)date
@@ -400,11 +407,11 @@ NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value)
 - (BOOL)isBetweenDates:(NSDate *)beginDate andDate:(NSDate *)endDate
 {
     if ([self compare:beginDate] == NSOrderedAscending) {
-    	return NO;
+        return NO;
     }
     
     if ([self compare:endDate] == NSOrderedDescending) {
-    	return NO;
+        return NO;
     }
     
     return YES;
