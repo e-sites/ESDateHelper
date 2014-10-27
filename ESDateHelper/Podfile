@@ -1,1 +1,3 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
 pod "ESDateHelper", :path => "../ESDateHelper.podspec"
