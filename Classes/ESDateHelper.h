@@ -69,6 +69,8 @@ typedef void (^NSDateComponentsBlock)(NSDateComponents *comp);
 
 - (NSDate *)dateAtBeginningOfDay;
 
+- (NSDate *)dateOfFirstDayOfFirstWeekForWeekDay:(NSInteger)weekday;
+
 - (NSInteger)secondsFromDate:(NSDate *)date;
 - (NSInteger)minutesFromDate:(NSDate *)date;
 - (NSInteger)hoursFromDate:(NSDate *)date;

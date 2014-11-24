@@ -267,6 +267,21 @@ NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value)
     }];
 }
 
+- (NSDate *)dateOfFirstDayOfFirstWeekForWeekDay:(NSInteger)weekday
+{
+    NSDate *date = [self dateBySettingComponents:^(NSDateComponents *comp) {
+        comp.hour = 0;
+        comp.minute = 0;
+        comp.second = 0;
+        comp.day = 1;
+    }];
+    NSInteger dif = [date weekday] - weekday;
+    if (dif < 0) {
+        dif += 7;
+    }
+    return [date dateByAddingDays:-dif];
+}
+
 - (NSInteger)hour
 {
     NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitHour fromDate:self];
