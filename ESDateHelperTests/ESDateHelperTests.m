@@ -131,7 +131,10 @@
 {
     NSString *str = [date descriptionWithLocale:[NSLocale localeWithLocaleIdentifier:@"nl_NL"]];
     NSString *expectedDateValue = @"vrijdag 9 mei 2014 15:10:05";
-    str = [str componentsSeparatedByString:@" Midd"][0];
+    NSArray *spl = [str componentsSeparatedByString:@" "];
+    if (spl.count > 4) {
+        str = [@[ spl[0], spl[1], spl[2], spl[3], spl[4] ] componentsJoinedByString:@" "];
+    }
     XCTAssertTrue([str isEqualToString:expectedDateValue], @"Date is '%@', expected '%@'", str, expectedDateValue);
 }
 
