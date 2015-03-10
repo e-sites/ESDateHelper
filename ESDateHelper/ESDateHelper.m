@@ -29,7 +29,6 @@ typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
     _ESDateComponentFlagMinute,
     _ESDateComponentFlagHour,
     _ESDateComponentFlagSecond,
-    _ESDateComponentFlagWeekDay,
     _ESDateComponentFlagEra
 };
 
@@ -71,12 +70,7 @@ NSDateComponents *_dateComponent(_ESDateComponentFlag flag, NSDate *date, NSInte
         autorelease(dateComponents);
         
     } else {
-        NSInteger flags = NSCalendarUnitEra | NSCalendarUnitQuarter |  NSCalendarUnitYear |  NSCalendarUnitMonth | NSCalendarUnitWeekOfYear | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
-        if (flag == _ESDateComponentFlagWeekDay) {
-            flags |= NSCalendarUnitWeekday;
-        } else {
-            flags |= NSCalendarUnitDay;
-        }
+        NSInteger flags = NSCalendarUnitEra | NSCalendarUnitQuarter |  NSCalendarUnitYear |  NSCalendarUnitMonth | NSCalendarUnitWeekOfYear | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitDay;
         dateComponents = [[NSCalendar currentCalendar] components:flags fromDate:date];
     }
     
@@ -92,9 +86,6 @@ NSDateComponents *_dateComponent(_ESDateComponentFlag flag, NSDate *date, NSInte
             break;
         case _ESDateComponentFlagYear:
             dateComponents.year = value;
-            break;
-        case _ESDateComponentFlagWeekDay:
-            dateComponents.weekday = value;
             break;
         case _ESDateComponentFlagDay:
             dateComponents.day = value;
@@ -205,7 +196,7 @@ NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value)
 
 - (NSDate *)dateBySettingWeekDay:(NSInteger)weekday
 {
-    return _dateSet(self, _ESDateComponentFlagWeekDay, weekday);
+    return _dateSet(self, _ESDateComponentFlagDay, self.day - (self.weekday - weekday));
 }
 
 - (NSDate *)dateByAddingWeeks:(NSInteger)weeks
