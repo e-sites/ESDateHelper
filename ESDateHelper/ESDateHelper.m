@@ -57,6 +57,40 @@ NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value);
     return YES;
 }
 
++ (BOOL)isTimeInPast:(NSString *)time
+{
+    NSDateFormatter *fm = [[[NSDateFormatter alloc] init] autorelease];
+    [fm setTimeStyle:NSDateFormatterShortStyle];
+    [fm setLocale:[NSLocale localeWithLocaleIdentifier:@"nl_NL"]];
+    // H:m
+    NSDate *d = [fm dateFromString:time];
+    if (d == nil) {
+        [fm setTimeStyle:NSDateFormatterShortStyle];
+        
+        // H:m:s
+        d = [fm dateFromString:time];
+        if (d == nil) {
+            [fm setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US"]];
+            
+            // h:m a
+            d = [fm dateFromString:time];
+            if (d == nil) {
+                [fm setTimeStyle:NSDateFormatterShortStyle];
+                
+                // h:m:s a
+                d = [fm dateFromString:time];
+            }
+        }
+    }
+    NSAssert(d != nil, @"Unknown time format for '%@', should by NSDateFormatterShortStyle or NSDateFormatterMediumStyle", time);
+    NSDate *now = [[NSDate date] dateBySettingComponents:^(NSDateComponents *comp) {
+        comp.hour = d.hour;
+        comp.second = d.second;
+        comp.minute = d.minute;
+    }];
+    return [[NSDate date] compare:now] == NSOrderedDescending;
+}
+
 #pragma mark - NSDateComponents
 // ____________________________________________________________________________________________________________________
 

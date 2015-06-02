@@ -10,6 +10,7 @@
 
 @interface ESDateHelper : NSObject
 + (BOOL)is24HourNotation;
++ (BOOL)isTimeInPast:(NSString *)time;
 @end
 
 @interface NSDate (ESDateHelper)

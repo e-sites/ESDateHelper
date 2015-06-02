@@ -10,6 +10,7 @@ Helper category for making the usage of NSDates easier
 ## Class methods
 ```objective-c
 + (BOOL)is24HourNotation;
++ (BOOL)isTimeInPast:(NSString *)time;
 ```
 
 # NSDate category
