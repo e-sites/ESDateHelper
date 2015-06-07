@@ -14,8 +14,8 @@
 #define release(obj) [obj release]
 #else
 #define __weakblock __weak
-#define autorelease(obj)
-#define release(obj)
+#define autorelease(obj) obj
+#define release(obj) obj
 #endif
 
 
