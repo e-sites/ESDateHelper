@@ -48,8 +48,7 @@ NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value);
 
 + (BOOL)is24HourNotation
 {
-    NSDateFormatter *fm = [[NSDateFormatter alloc] init];
-    autorelease(fm);
+    NSDateFormatter *fm = autorelease([[NSDateFormatter alloc] init]);
     [fm setDateFormat:@"a"];
     NSString *formatStringForHours = [NSDateFormatter dateFormatFromTemplate:@"j" options:0 locale:[NSLocale currentLocale]];
     if ([formatStringForHours rangeOfString:@"a"].location != NSNotFound) {
@@ -60,8 +59,7 @@ NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value);
 
 + (BOOL)isTimeInPast:(NSString *)time
 {
-    NSDateFormatter *fm = [[NSDateFormatter alloc] init];
-    autorelease(fm);
+    NSDateFormatter *fm = autorelease([[NSDateFormatter alloc] init]);
     [fm setTimeStyle:NSDateFormatterShortStyle];
     [fm setLocale:[NSLocale localeWithLocaleIdentifier:@"nl_NL"]];
     // H:m
@@ -102,8 +100,7 @@ NSDateComponents *_dateComponent(_ESDateComponentFlag flag, NSDate *date, NSInte
     NSDateComponents *dateComponents;
     
     if (date == nil) {
-        dateComponents = [[NSDateComponents alloc] init];
-        autorelease(dateComponents);
+        dateComponents = autorelease([[NSDateComponents alloc] init]);
         
     } else {
         NSInteger flags = NSCalendarUnitEra | NSCalendarUnitQuarter |  NSCalendarUnitYear |  NSCalendarUnitMonth | NSCalendarUnitWeekOfYear | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitDay;
