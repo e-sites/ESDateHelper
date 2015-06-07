@@ -59,7 +59,7 @@ NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value);
 
 + (BOOL)isTimeInPast:(NSString *)time
 {
-    NSDateFormatter *fm = autorelease([[[NSDateFormatter alloc] init]);
+    NSDateFormatter *fm = [[NSDateFormatter alloc] init];
     [fm setTimeStyle:NSDateFormatterShortStyle];
     [fm setLocale:[NSLocale localeWithLocaleIdentifier:@"nl_NL"]];
     // H:m
