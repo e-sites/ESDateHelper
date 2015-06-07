@@ -49,6 +49,7 @@ NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value);
 + (BOOL)is24HourNotation
 {
     NSDateFormatter *fm = [[NSDateFormatter alloc] init];
+    autorelease(fm);
     [fm setDateFormat:@"a"];
     NSString *formatStringForHours = [NSDateFormatter dateFormatFromTemplate:@"j" options:0 locale:[NSLocale currentLocale]];
     if ([formatStringForHours rangeOfString:@"a"].location != NSNotFound) {
@@ -60,6 +61,7 @@ NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value);
 + (BOOL)isTimeInPast:(NSString *)time
 {
     NSDateFormatter *fm = [[NSDateFormatter alloc] init];
+    autorelease(fm);
     [fm setTimeStyle:NSDateFormatterShortStyle];
     [fm setLocale:[NSLocale localeWithLocaleIdentifier:@"nl_NL"]];
     // H:m
