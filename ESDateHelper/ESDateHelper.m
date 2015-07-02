@@ -8,16 +8,6 @@
 
 #import "ESDateHelper.h"
 
-#if !__has_feature(objc_arc)
-#define __weakblock __block
-#define autorelease(obj) [obj autorelease]
-#define release(obj) [obj release]
-#else
-#define __weakblock __weak
-#define autorelease(obj)
-#define release(obj)
-#endif
-
 
 typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
     _ESDateComponentFlagNone = 0,
@@ -49,7 +39,6 @@ NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value);
 + (BOOL)is24HourNotation
 {
     NSDateFormatter *fm = [[NSDateFormatter alloc] init];
-    autorelease(fm);
     [fm setDateFormat:@"a"];
     NSString *formatStringForHours = [NSDateFormatter dateFormatFromTemplate:@"j" options:0 locale:[NSLocale currentLocale]];
     if ([formatStringForHours rangeOfString:@"a"].location != NSNotFound) {
@@ -61,7 +50,6 @@ NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value);
 + (BOOL)isTimeInPast:(NSString *)time
 {
     NSDateFormatter *fm = [[NSDateFormatter alloc] init];
-    autorelease(fm);
     [fm setTimeStyle:NSDateFormatterShortStyle];
     [fm setLocale:[NSLocale localeWithLocaleIdentifier:@"nl_NL"]];
     // H:m
@@ -103,7 +91,6 @@ NSDateComponents *_dateComponent(_ESDateComponentFlag flag, NSDate *date, NSInte
     
     if (date == nil) {
         dateComponents = [[NSDateComponents alloc] init];
-        autorelease(dateComponents);
         
     } else {
         NSInteger flags = NSCalendarUnitEra | NSCalendarUnitQuarter |  NSCalendarUnitYear |  NSCalendarUnitMonth | NSCalendarUnitWeekOfYear | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitDay;
@@ -431,7 +418,7 @@ NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value)
     if (block == nil) {
         return [self dateByAddingDays:0];
     }
-    __weakblock NSDateComponents *comp = _dateComponent(_ESDateComponentFlagNone, nil, 0);
+    NSDateComponents *comp = _dateComponent(_ESDateComponentFlagNone, nil, 0);
     block(comp);
     return [[NSCalendar currentCalendar] dateByAddingComponents:comp toDate:self options:0];
 }
@@ -441,7 +428,8 @@ NSDate *_dateAdd(NSDate *date, _ESDateComponentFlag flag, NSInteger value)
     if (block == nil) {
         return [self dateByAddingDays:0];
     }
-    __weakblock NSDateComponents *comp = _dateComponent(_ESDateComponentFlagNone, self, 0);
+    
+    NSDateComponents *comp = _dateComponent(_ESDateComponentFlagNone, self, 0);
     block(comp);
     return [[NSCalendar currentCalendar] dateFromComponents:comp];
 }
