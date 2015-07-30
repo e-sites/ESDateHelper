@@ -161,10 +161,12 @@
     XCTAssertEqualObjects([formatter stringFromDate:d], rd);
     
     formatter = [NSDateFormatter dateFormatterWithDateFormat:NSDateFormatterFormatBasicTTime];
+    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Amsterdam"]];
     rd = @"T125516.000+0100";
     XCTAssertEqualObjects([formatter stringFromDate:d], rd);
     
     formatter = [NSDateFormatter dateFormatterWithDateFormat:NSDateFormatterFormatWeekDate timeStyle:NSDateFormatterTimeStyleNoMillis];
+    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Amsterdam"]];
     rd = @"+0100-W11-3T12:55:16+0100";
     XCTAssertEqualObjects([formatter stringFromDate:d], rd);
 }
