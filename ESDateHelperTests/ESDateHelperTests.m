@@ -24,6 +24,9 @@
     fm = [[NSDateFormatter alloc] init];
     [fm setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     date = [fm dateFromString:@"2014-05-09 15:10:05"];
+    
+    
+    [NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
 }
 
 - (void)tearDown {
@@ -161,13 +164,11 @@
     XCTAssertEqualObjects([formatter stringFromDate:d], rd);
     
     formatter = [NSDateFormatter dateFormatterWithDateFormat:NSDateFormatterFormatBasicTTime];
-    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Amsterdam"]];
-    rd = @"T125516.000+0100";
+    rd = @"T125516.000+0000";
     XCTAssertEqualObjects([formatter stringFromDate:d], rd);
     
     formatter = [NSDateFormatter dateFormatterWithDateFormat:NSDateFormatterFormatWeekDate timeStyle:NSDateFormatterTimeStyleNoMillis];
-    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Amsterdam"]];
-    rd = @"+0100-W11-3T12:55:16+0100";
+    rd = @"+0000-W11-3T12:55:16+0000";
     XCTAssertEqualObjects([formatter stringFromDate:d], rd);
 }
 
