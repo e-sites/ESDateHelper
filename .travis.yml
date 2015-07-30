@@ -2,3 +2,6 @@ language: objective-c
 xcode_project: ESDateHelper.xcodeproj
 xcode_scheme: ESDateHelper
 xcode_sdk: iphonesimulator8.1
+
+after_success:
+  - coveralls
