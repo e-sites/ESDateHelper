@@ -1,3 +1,4 @@
+cache: bundler
 before_install: gem install slather -N
 
 language: objective-c
