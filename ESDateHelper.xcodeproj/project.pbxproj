@@ -168,6 +168,7 @@
 				DF444DAF1AAF18C400BB2721 /* Frameworks */,
 				DF444DB01AAF18C400BB2721 /* Headers */,
 				DF444DB11AAF18C400BB2721 /* Resources */,
+				DF3E3CBF1B6A470200A779CD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -248,6 +249,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DF3E3CBF1B6A470200A779CD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export | egrep '(BUILT_PRODUCTS_DIR)|(CURRENT_ARCH)|(OBJECT_FILE_DIR_normal)|(SRCROOT)|(OBJROOT)' > xcenv.sh\n\nsource xcenv.sh\ndeclare -r DIR_BUILD=\"${OBJECT_FILE_DIR_normal}/${CURRENT_ARCH}/\"\necho \"DIR_BUILD: ${DIR_BUILD}\"\nxcode-coveralls --token 8zasVvTkSjYpenfaPOJPhJysPeNTf94mh \"${DIR_BUILD}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DF444DAE1AAF18C400BB2721 /* Sources */ = {
