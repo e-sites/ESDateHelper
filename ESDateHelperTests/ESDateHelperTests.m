@@ -99,6 +99,7 @@
 {
     NSDate *now = [NSDate date];
     ESDateRange *r = [ESDateRange rangeFromDate:[NSDate dateWithTimeIntervalSinceNow:-100]];
+    NSLog(@"Date range description: %@", r);
     XCTAssert([r containsDate:now], @"Date range %@ should contain date %@", r, now);
     
     
@@ -135,6 +136,38 @@
     NSInteger difTo = [r.fromDate secondsFromDate:from];
     NSInteger difFrom = [r.toDate secondsFromDate:to];
     XCTAssert(difTo == dif && difFrom == dif, @"Difference should be %zd (is %zd)", dif, difTo);
+    
+    [r shiftWithSeconds:10];
+    dif += 10;
+    difTo = [r.fromDate secondsFromDate:from];
+    difFrom = [r.toDate secondsFromDate:to];
+    XCTAssert(difTo == dif && difFrom == dif, @"Difference should be %zd (is %zd)", dif, difTo);
+    
+    [r shiftWithMinutes:-5];
+    dif -= 5 * 60;
+    difTo = [r.fromDate secondsFromDate:from];
+    difFrom = [r.toDate secondsFromDate:to];
+    XCTAssert(difTo == dif && difFrom == dif, @"Difference should be %zd (is %zd)", dif, difTo);
+    
+    [r shiftWithHours:9];
+    dif += 9 * 60 * 60;
+    difTo = [r.fromDate secondsFromDate:from];
+    difFrom = [r.toDate secondsFromDate:to];
+    XCTAssert(difTo == dif && difFrom == dif, @"Difference should be %zd (is %zd)", dif, difTo);
+    
+    [r shiftWithDays:4];
+    dif += 4 * 24 * 60 * 60;
+    difTo = [r.fromDate secondsFromDate:from];
+    difFrom = [r.toDate secondsFromDate:to];
+    XCTAssert(difTo == dif && difFrom == dif, @"Difference should be %zd (is %zd)", dif, difTo);
+    
+    [r shiftWithWeeks:-8];
+    dif -= 7 * 24 * 60 * 60 * 8;
+    difTo = [r.fromDate secondsFromDate:from];
+    difFrom = [r.toDate secondsFromDate:to];
+    XCTAssert(difTo == dif && difFrom == dif, @"Difference should be %zd (is %zd)", dif, difTo);
+
+    
 }
 
 - (void)testToday

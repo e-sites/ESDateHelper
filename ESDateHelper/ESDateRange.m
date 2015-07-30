@@ -11,6 +11,9 @@
 #define checkDatesMacro() NSAssert(_ignorePreceedCheck || _toDate == nil || _fromDate == nil || [_fromDate compare:_toDate] != NSOrderedDescending, @"fromDate (%@) should preceed toDate (%@)", _fromDate, _toDate)
 #define ignorePreceedCheck(block) [self _ignorePreceedCheck:block]
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-designated-initializers"
+
 @implementation ESDateRange
 {
     BOOL _ignorePreceedCheck;
@@ -33,12 +36,12 @@
 
 + (ES_NOTNULLABLE instancetype)rangeFromDate:(ES_NULLABLE NSDate *)date
 {
-    return [self.class rangeFromDate:date toDate:nil];
+    return [[self.class alloc] initWithFromDate:date];
 }
 
 + (ES_NOTNULLABLE instancetype)rangeToDate:(ES_NULLABLE NSDate *)date
 {
-    return [self.class rangeFromDate:nil toDate:date];
+    return [[self.class alloc] initWithToDate:date];
 }
 
 - (ES_NOTNULLABLE instancetype)initWithToDate:(ES_NULLABLE NSDate *)toDate
@@ -51,8 +54,6 @@
     return [self initWithFromDate:fromDate toDate:nil];
 }
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wobjc-designated-initializers"
 - (instancetype)init
 {
     if (self = [super init]) {
@@ -60,7 +61,6 @@
     }
     return self;
 }
-#pragma clang diagnostic pop
 
 - (ES_NOTNULLABLE instancetype)initWithFromDate:(ES_NULLABLE NSDate *)fromDate toDate:(ES_NULLABLE NSDate *)toDate
 {
@@ -200,3 +200,5 @@
 }
 
 @end
+
+#pragma clang diagnostic pop
