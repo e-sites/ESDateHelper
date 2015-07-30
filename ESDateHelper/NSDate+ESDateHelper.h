@@ -1,17 +1,12 @@
 //
-//  ESDateHelper.h
-//  iOS.Library
+//  NSDate+ESDateHelper.h
+//  ESDateHelper
 //
-//  Created by Bas van Kuijck on 16-04-14.
-//
+//  Created by Bas van Kuijck on 30-07-15.
+//  Copyright © 2015 e-sites. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-
-@interface ESDateHelper : NSObject
-+ (BOOL)is24HourNotation;
-+ (BOOL)isTimeInPast:(NSString *)time;
-@end
 
 @interface NSDate (ESDateHelper)
 

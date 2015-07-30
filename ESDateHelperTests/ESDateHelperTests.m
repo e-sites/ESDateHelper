@@ -34,6 +34,51 @@
 #pragma mark - ESDateHelper
 // ____________________________________________________________________________________________________________________
 
+
+- (void)testAll
+{
+    ESDateRange *r = [ESDateRange rangeFromDate:[NSDate dateWithTimeIntervalSinceNow:-100]];
+    NSLog(@"in range? %zd", [r containsDate:[NSDate dateWithTimeIntervalSinceNow:-110]]);
+}
+
+- (void)testDateRange
+{
+    NSDate *now = [NSDate date];
+    ESDateRange *r = [ESDateRange rangeFromDate:[NSDate dateWithTimeIntervalSinceNow:-100]];
+    XCTAssert([r containsDate:now], @"Date range %@ should contain date %@", r, now);
+    
+    
+    r = [ESDateRange rangeFromDate:[NSDate dateWithTimeIntervalSinceNow:-100] toDate:[NSDate dateWithTimeIntervalSinceNow:100]];
+    XCTAssert([r containsDate:now], @"Date range %@ should contain date %@", r, now);
+    
+    
+    r = [ESDateRange rangeToDate:[NSDate dateWithTimeIntervalSinceNow:100]];
+    XCTAssert([r containsDate:now], @"Date range %@ should contain date %@", r, now);
+    
+    
+    r = [ESDateRange infiniteRange];
+    XCTAssert([r containsDate:now], @"Date range %@ should contain date %@", r, now);
+}
+
+- (void)testShiftDateRange
+{
+    NSDate *from = [NSDate dateWithTimeIntervalSinceNow:-100];
+    NSDate *to = [NSDate dateWithTimeIntervalSinceNow:100];
+    ESDateRange *r = [ESDateRange rangeFromDate:from toDate:to];
+    NSInteger hours = 1;
+    NSInteger days = 3;
+    NSInteger seconds = 2;
+    [r shiftWithComponents:^(NSDateComponents *comp) {
+        comp.hour = hours;
+        comp.second = seconds;
+        comp.day = days;
+    }];
+    NSInteger dif = (24 * 60 * 60 * days) + (60 * 60 * hours) + seconds;
+    NSInteger difTo = [r.fromDate secondsFromDate:from];
+    NSInteger difFrom = [r.toDate secondsFromDate:to];
+    XCTAssert(difTo == dif && difFrom == dif, @"Difference should be %zd (is %zd)", dif, difTo);
+}
+
 - (void)testESDateHelperYear
 {
     NSInteger expectedValue = 2014;

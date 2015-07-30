@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF0E35B11B6A17660033406B /* NSDate+ESDateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = DF0E35AF1B6A17660033406B /* NSDate+ESDateHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DF0E35B21B6A17660033406B /* NSDate+ESDateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0E35B01B6A17660033406B /* NSDate+ESDateHelper.m */; };
+		DF0E35B51B6A17E90033406B /* ESDateRange.h in Headers */ = {isa = PBXBuildFile; fileRef = DF0E35B31B6A17E90033406B /* ESDateRange.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DF0E35B61B6A17E90033406B /* ESDateRange.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0E35B41B6A17E90033406B /* ESDateRange.m */; };
+		DF0E35B71B6A18600033406B /* NSDate+ESDateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0E35B01B6A17660033406B /* NSDate+ESDateHelper.m */; };
+		DF0E35B81B6A18600033406B /* ESDateRange.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0E35B41B6A17E90033406B /* ESDateRange.m */; };
 		DF444DB91AAF18C400BB2721 /* ESDateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = DF444DB81AAF18C400BB2721 /* ESDateHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DF444DBF1AAF18C400BB2721 /* ESDateHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF444DB31AAF18C400BB2721 /* ESDateHelper.framework */; };
 		DF444DC61AAF18C400BB2721 /* ESDateHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF444DC51AAF18C400BB2721 /* ESDateHelperTests.m */; };
@@ -39,6 +45,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DF0E35AF1B6A17660033406B /* NSDate+ESDateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ESDateHelper.h"; sourceTree = "<group>"; };
+		DF0E35B01B6A17660033406B /* NSDate+ESDateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ESDateHelper.m"; sourceTree = "<group>"; };
+		DF0E35B31B6A17E90033406B /* ESDateRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESDateRange.h; sourceTree = "<group>"; };
+		DF0E35B41B6A17E90033406B /* ESDateRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESDateRange.m; sourceTree = "<group>"; };
 		DF444DB31AAF18C400BB2721 /* ESDateHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ESDateHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF444DB71AAF18C400BB2721 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF444DB81AAF18C400BB2721 /* ESDateHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESDateHelper.h; sourceTree = "<group>"; };
@@ -90,6 +100,10 @@
 			children = (
 				DF444DB81AAF18C400BB2721 /* ESDateHelper.h */,
 				DF444DCF1AAF18F600BB2721 /* ESDateHelper.m */,
+				DF0E35AF1B6A17660033406B /* NSDate+ESDateHelper.h */,
+				DF0E35B01B6A17660033406B /* NSDate+ESDateHelper.m */,
+				DF0E35B31B6A17E90033406B /* ESDateRange.h */,
+				DF0E35B41B6A17E90033406B /* ESDateRange.m */,
 				DF444DB61AAF18C400BB2721 /* Supporting Files */,
 			);
 			path = ESDateHelper;
@@ -128,6 +142,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF444DB91AAF18C400BB2721 /* ESDateHelper.h in Headers */,
+				DF0E35B51B6A17E90033406B /* ESDateRange.h in Headers */,
+				DF0E35B11B6A17660033406B /* NSDate+ESDateHelper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +244,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF0E35B21B6A17660033406B /* NSDate+ESDateHelper.m in Sources */,
+				DF0E35B61B6A17E90033406B /* ESDateRange.m in Sources */,
 				DF444DD01AAF18F600BB2721 /* ESDateHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,8 +254,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF0E35B71B6A18600033406B /* NSDate+ESDateHelper.m in Sources */,
 				DF444DC61AAF18C400BB2721 /* ESDateHelperTests.m in Sources */,
 				DF444DD11AAF18F900BB2721 /* ESDateHelper.m in Sources */,
+				DF0E35B81B6A18600033406B /* ESDateRange.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
