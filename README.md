@@ -93,17 +93,17 @@ Helper category for making the usage of NSDates easier
 ```objective-c
 
 + (notnull instancetype)infiniteRange;
-+ (notnull instancetype)rangeFromDate:(ES_NULLABLE NSDate *)from toDate:(ES_NULLABLE NSDate *)to;
-+ (notnull instancetype)rangeFromDate:(ES_NULLABLE NSDate *)date;
-+ (notnull instancetype)rangeToDate:(ES_NULLABLE NSDate *)date;
++ (notnull instancetype)rangeFromDate:(nullable NSDate *)from toDate:(nullable NSDate *)to;
++ (notnull instancetype)rangeFromDate:(nullable NSDate *)date;
++ (notnull instancetype)rangeToDate:(nullable NSDate *)date;
 ```
 
 ## Instance methods
 
 ```objective-c
-- (notnull instancetype)initWithFromDate:(ES_NULLABLE NSDate *)fromDate toDate:(ES_NULLABLE NSDate *)toDate;
-- (notnull instancetype)initWithFromDate:(ES_NULLABLE NSDate *)fromDate;
-- (notnull instancetype)initWithToDate:(ES_NULLABLE NSDate *)toDate;
+- (notnull instancetype)initWithFromDate:(nullable NSDate *)fromDate toDate:(nullable NSDate *)toDate;
+- (notnull instancetype)initWithFromDate:(nullable NSDate *)fromDate;
+- (notnull instancetype)initWithToDate:(nullable NSDate *)toDate;
 
 - (BOOL)containsDate:(notnull NSDate *)date;
 
