@@ -51,11 +51,6 @@
     return [self initWithFromDate:fromDate toDate:nil];
 }
 
-- (instancetype)init
-{
-    return [super init];
-}
-
 - (ES_NOTNULLABLE instancetype)initWithFromDate:(ES_NULLABLE NSDate *)fromDate toDate:(ES_NULLABLE NSDate *)toDate
 {
     if (self = [super init]) {
