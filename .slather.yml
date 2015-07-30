@@ -1,2 +1,5 @@
 coverage_service: coveralls
 xcodeproj: ESDateHelper.xcodeproj
+ignore:
+  - */Pods/*
+  - ESDateHelperTests/*
