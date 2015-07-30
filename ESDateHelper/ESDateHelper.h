@@ -6,9 +6,6 @@
 //
 //
 
-#ifndef ESDATEHELPER_IMPORT_HEADER
-#define ESDATEHELPER_IMPORT_HEADER
-
 #import <Foundation/Foundation.h>
 #import "NSDate+ESDateHelper.h"
 #import "ESDateRange.h"
@@ -17,5 +14,3 @@
 + (BOOL)is24HourNotation;
 + (BOOL)isTimeInPast:(NSString *)time;
 @end
-
-#endif
