@@ -2,7 +2,7 @@ before_install: gem install slather -N
 
 language: objective-c
 xcode_project: ESDateHelper.xcodeproj
-xcode_scheme: ESDateHelper-travis
+xcode_scheme: ESDateHelper
 xcode_sdk: iphonesimulator8.1
 
 after_success: slather
