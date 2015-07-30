@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "NSDate+ESDateHelper.h"
 #import "ESDateRange.h"
+#import "NSDateFormatter+ESDateHelper.h"
 
 @interface ESDateHelper : NSObject
 + (BOOL)is24HourNotation;
-+ (BOOL)isTimeInPast:(NSString *)time;
++ (BOOL)isTimeInPast:(ES_NOTNULLABLE NSString *)time;
 @end

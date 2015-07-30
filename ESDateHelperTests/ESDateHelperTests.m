@@ -79,6 +79,22 @@
     XCTAssert(difTo == dif && difFrom == dif, @"Difference should be %zd (is %zd)", dif, difTo);
 }
 
+- (void)testDateFormat
+{
+    NSDate *d = [[NSDate date] dateBySettingComponents:^(NSDateComponents *comp) {
+        comp.hour = 12;
+        comp.minute = 55;
+        comp.second = 16;
+        comp.day = 8;
+        comp.year = 1983;
+        comp.month = 3;
+    }];
+    
+    NSDateFormatter *formatter = [NSDateFormatter dateFormatterWithDateFormat:NSDateFormatterFormatDateHourMinuteSecondFraction timeStyle:NSDateFormatterTimeStyleTime];
+    NSString *rd = @"1983-03-08T12:55:16.000";
+    XCTAssertEqualObjects([formatter stringFromDate:d], rd);
+}
+
 - (void)testESDateHelperYear
 {
     NSInteger expectedValue = 2014;

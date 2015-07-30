@@ -7,31 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ESDateHelper-Nullable.h"
 #import "NSDate+ESDatehelper.h"
 
 @interface ESDateRange : NSObject
-
-/**
- *  @definedblock nullable / nonull helpers
- *
- *  @define ES_NULLABLE nullable (>= iOS9)
- *  @define ES_NOTNULLABLE nonnull (>= iOS9)
- *  @define ES_NULLABLE_PROPERTY nullable, (>= iOS9)
- *  @define ES_NOTNULLABLE_PROPERTY nonnull, (>= iOS9)
- *	@parseOnly
- */
-#ifdef __IPHONE_9_0
-#   define ES_NULLABLE nullable
-#   define ES_NOTNULLABLE nonnull
-#   define ES_NULLABLE_PROPERTY ES_NULLABLE,
-#   define ES_NOTNULLABLE_PROPERTY ES_NOTNULLABLE,
-#else
-#   define ES_NULLABLE_PROPERTY
-#   define ES_NOTNULLABLE_PROPERTY
-#   define ES_NULLABLE
-#   define ES_NOTNULLABLE
-#endif
-/*! @/definedblock */
 
 /**
  * ============================================================================================================
