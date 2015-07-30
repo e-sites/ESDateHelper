@@ -85,3 +85,42 @@ Helper category for making the usage of NSDates easier
 
 - (BOOL)isBetweenDates:(NSDate *)beginDate andDate:(NSDate *)endDate;
 ```
+
+# ESDateRange class
+
+## Class methods
+
+```objective-c
+
++ (notnull instancetype)infiniteRange;
++ (notnull instancetype)rangeFromDate:(ES_NULLABLE NSDate *)from toDate:(ES_NULLABLE NSDate *)to;
++ (notnull instancetype)rangeFromDate:(ES_NULLABLE NSDate *)date;
++ (notnull instancetype)rangeToDate:(ES_NULLABLE NSDate *)date;
+```
+
+## Instance methods
+
+```objective-c
+- (notnull instancetype)initWithFromDate:(ES_NULLABLE NSDate *)fromDate toDate:(ES_NULLABLE NSDate *)toDate;
+- (notnull instancetype)initWithFromDate:(ES_NULLABLE NSDate *)fromDate;
+- (notnull instancetype)initWithToDate:(ES_NULLABLE NSDate *)toDate;
+
+- (BOOL)containsDate:(notnull NSDate *)date;
+
+- (void)shiftWithSeconds:(NSInteger)seconds;
+- (void)shiftWithMinutes:(NSInteger)minutes;
+- (void)shiftWithHours:(NSInteger)hours;
+- (void)shiftWithDays:(NSInteger)days;
+- (void)shiftWithWeeks:(NSInteger)weeks;
+- (void)shiftWithMonths:(NSInteger)months;
+- (void)shiftWithYears:(NSInteger)years;
+- (void)shiftWithEras:(NSInteger)eras;
+- (void)shiftWithComponents:(notnull NSDateComponentsBlock)componentsBlock;
+```
+
+## Properties
+
+```objective-c
+@property (nullable, nonatomic, strong) NSDate *fromDate;
+@property (nullable, nonatomic, strong) NSDate *toDate;
+```
