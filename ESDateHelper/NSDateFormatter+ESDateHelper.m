@@ -48,7 +48,7 @@
             if (timeStyle == NSDateFormatterTimeStyleNoMillis) {
                 return @"T'HHmmssZ";
             }
-            return @"T'HHmmss.SSSZ";
+            return @"'T'HHmmss.SSSZ";
             
         
         case NSDateFormatterFormatBasicWeekDate:

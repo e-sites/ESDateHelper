@@ -27,16 +27,6 @@ typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
 
 @dynamic hour,minute,second,era,year,month,week,weekday,today,leapYear,day,weekOfMonth;
 
-+ (instancetype)infiniteDate
-{
-    return [NSDate dateWithTimeIntervalSince1970:-15368715678];
-}
-
-- (BOOL)isInfinite
-{
-    return [self isEqualToDate:[NSDate infiniteDate]];
-}
-
 #pragma mark - NSDate Extension
 // ____________________________________________________________________________________________________________________
 

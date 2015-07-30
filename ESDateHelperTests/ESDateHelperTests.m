@@ -49,7 +49,8 @@
 - (void)testLeapYear
 {
     XCTAssert(![NSDate isLeapYear:2014], @"2014 is not a leap year");
-    XCTAssert([NSDate isLeapYear:2016], @"2016 is a leap year");
+    NSDate *d = [[NSDate date] dateBySettingYears:2016];
+    XCTAssert([d isLeapYear], @"%@ should be a leap year", d);
 }
 
 - (void)testTimeInPast
@@ -71,6 +72,24 @@
     }
     NSString *str = [NSString stringWithFormat:@"%02zd:%02zd:%02zd", hours, minutes, seconds];
     XCTAssert([ESDateHelper isTimeInPast:str], @"Time should be in past: %@", str);
+    
+    str = [NSString stringWithFormat:@"%zd:%02zd:%02zd am", (hours % 12), minutes, seconds];
+    XCTAssert([ESDateHelper isTimeInPast:str], @"Time should be in past: %@", str);
+    
+    minutes--;
+    if (minutes == -1) {
+        minutes = 59;
+        hours--;
+        if (hours == -1) {
+            return;
+        }
+    }
+    
+    str = [NSString stringWithFormat:@"%02zd:%02zd", hours, minutes];
+    XCTAssert([ESDateHelper isTimeInPast:str], @"Time should be in past: %@", str);
+    
+    str = [NSString stringWithFormat:@"%zd:%02zd am", hours % 12, minutes];
+    XCTAssert([ESDateHelper isTimeInPast:str], @"Time should be in past: %@", str);
 }
 
 - (void)testDateRange
@@ -84,12 +103,16 @@
     XCTAssert([r containsDate:now], @"Date range %@ should contain date %@", r, now);
     
     
+    XCTAssert([now isBetweenDates:r.fromDate andDate:r.toDate], @"Date (%@) should be between dates %@", now, r);
+    
+    
     r = [ESDateRange rangeToDate:[NSDate dateWithTimeIntervalSinceNow:100]];
     XCTAssert([r containsDate:now], @"Date range %@ should contain date %@", r, now);
     
     
     r = [ESDateRange infiniteRange];
     XCTAssert([r containsDate:now], @"Date range %@ should contain date %@", r, now);
+    
 }
 
 - (void)testShiftDateRange
@@ -111,7 +134,15 @@
     XCTAssert(difTo == dif && difFrom == dif, @"Difference should be %zd (is %zd)", dif, difTo);
 }
 
-- (void)testDateFormat
+- (void)testToday
+{
+    NSDate *d = [[[NSDate date] dateAtBeginningOfDay] dateByAddingMinutes:5];
+    XCTAssert([d isToday], @"Date should be today (%@)", d);
+    
+    XCTAssert([d isInCurrentWeek], @"Date should be in current week (%@)", d);
+}
+
+- (void)testDateFormats
 {
     NSDate *d = [[NSDate date] dateBySettingComponents:^(NSDateComponents *comp) {
         comp.hour = 12;
@@ -122,8 +153,19 @@
         comp.month = 3;
     }];
     
+    NSString *stringFormat = [NSDateFormatter stringFormatForFormat:NSDateFormatterFormatBasicOrdinalDate];
+    XCTAssertEqualObjects(@"yyyyDDD", stringFormat);
+    
     NSDateFormatter *formatter = [NSDateFormatter dateFormatterWithDateFormat:NSDateFormatterFormatDateHourMinuteSecondFraction timeStyle:NSDateFormatterTimeStyleTime];
     NSString *rd = @"1983-03-08T12:55:16.000";
+    XCTAssertEqualObjects([formatter stringFromDate:d], rd);
+    
+    formatter = [NSDateFormatter dateFormatterWithDateFormat:NSDateFormatterFormatBasicTTime];
+    rd = @"T125516.000+0100";
+    XCTAssertEqualObjects([formatter stringFromDate:d], rd);
+    
+    formatter = [NSDateFormatter dateFormatterWithDateFormat:NSDateFormatterFormatWeekDate timeStyle:NSDateFormatterTimeStyleNoMillis];
+    rd = @"+0100-W11-3T12:55:16+0100";
     XCTAssertEqualObjects([formatter stringFromDate:d], rd);
 }
 
