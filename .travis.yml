@@ -1,6 +1,8 @@
+before_install: gem install slather -N
+
 language: objective-c
 xcode_project: ESDateHelper.xcodeproj
-xcode_scheme: ESDateHelper
+xcode_scheme: ESDateHelper-travis
 xcode_sdk: iphonesimulator8.1
-before_install: gem install cocoapods xcpretty obcd slather -N
+
 after_success: slather

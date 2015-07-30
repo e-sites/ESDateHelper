@@ -51,6 +51,17 @@
     return [self initWithFromDate:fromDate toDate:nil];
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-designated-initializers"
+- (instancetype)init
+{
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
+#pragma clang diagnostic pop
+
 - (ES_NOTNULLABLE instancetype)initWithFromDate:(ES_NULLABLE NSDate *)fromDate toDate:(ES_NULLABLE NSDate *)toDate
 {
     if (self = [super init]) {
