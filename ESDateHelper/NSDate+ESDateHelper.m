@@ -7,6 +7,7 @@
 //
 
 #import "NSDate+ESDateHelper.h"
+#import "ESDateRange.h"
 
 
 typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
@@ -314,15 +315,8 @@ typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
 
 - (BOOL)isBetweenDates:(NSDate *)beginDate andDate:(NSDate *)endDate
 {
-    if ([self compare:beginDate] == NSOrderedAscending) {
-        return NO;
-    }
-    
-    if ([self compare:endDate] == NSOrderedDescending) {
-        return NO;
-    }
-    
-    return YES;
+    ESDateRange *range = [ESDateRange rangeFromDate:beginDate toDate:endDate];
+    return [range containsDate:self];
 }
 
 #pragma mark - Private functions

@@ -41,6 +41,38 @@
     NSLog(@"in range? %zd", [r containsDate:[NSDate dateWithTimeIntervalSinceNow:-110]]);
 }
 
+- (void)test24HourNotation
+{
+    [ESDateHelper is24HourNotation];
+}
+
+- (void)testLeapYear
+{
+    XCTAssert(![NSDate isLeapYear:2014], @"2014 is not a leap year");
+    XCTAssert([NSDate isLeapYear:2016], @"2016 is a leap year");
+}
+
+- (void)testTimeInPast
+{
+    NSInteger hours = [[NSDate date] hour];
+    NSInteger minutes = [[NSDate date] minute];
+    NSInteger seconds = [[NSDate date] second];
+    seconds--;
+    if (seconds == -1) {
+        seconds = 59;
+        minutes--;
+        if (minutes == -1) {
+            minutes = 59;
+            hours--;
+            if (hours == -1) {
+                return;
+            }
+        }
+    }
+    NSString *str = [NSString stringWithFormat:@"%02zd:%02zd:%02zd", hours, minutes, seconds];
+    XCTAssert([ESDateHelper isTimeInPast:str], @"Time should be in past: %@", str);
+}
+
 - (void)testDateRange
 {
     NSDate *now = [NSDate date];

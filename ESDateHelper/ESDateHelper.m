@@ -36,7 +36,7 @@
     // H:m
     NSDate *d = [fm dateFromString:time];
     if (d == nil) {
-        [fm setTimeStyle:NSDateFormatterShortStyle];
+        [fm setTimeStyle:NSDateFormatterMediumStyle];
         
         // H:m:s
         d = [fm dateFromString:time];
