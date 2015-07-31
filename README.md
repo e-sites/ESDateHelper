@@ -10,7 +10,7 @@ Helper category for making the usage of NSDates easier
 ## Class methods
 ```objective-c
 + (BOOL)is24HourNotation;
-+ (BOOL)isTimeInPast:(notnull NSString *)time;
++ (BOOL)isTimeInPast:(nonnull NSString *)time;
 ```
 
 # NSDate category
@@ -44,45 +44,45 @@ Helper category for making the usage of NSDates easier
 ```objective-c
 - (BOOL)isSameDay:(NSDate *)date;
 
-- (notnull NSDate *)dateByAddingComponents:(NSDateComponentsBlock)block;
-- (notnull NSDate *)dateBySettingComponents:(NSDateComponentsBlock)block;
+- (nonnull NSDate *)dateByAddingComponents:(NSDateComponentsBlock)block;
+- (nonnull NSDate *)dateBySettingComponents:(NSDateComponentsBlock)block;
 
-- (notnull NSDate *)dateByAddingHours:(NSInteger)hours;
-- (notnull NSDate *)dateBySettingHours:(NSInteger)hours;
+- (nonnull NSDate *)dateByAddingHours:(NSInteger)hours;
+- (nonnull NSDate *)dateBySettingHours:(NSInteger)hours;
 
-- (notnull NSDate *)dateByAddingMinutes:(NSInteger)minutes;
-- (notnull NSDate *)dateBySettingMinutes:(NSInteger)minutes;
+- (nonnull NSDate *)dateByAddingMinutes:(NSInteger)minutes;
+- (nonnull NSDate *)dateBySettingMinutes:(NSInteger)minutes;
 
-- (notnull NSDate *)dateByAddingSeconds:(NSInteger)seconds;
-- (notnull NSDate *)dateBySettingSeconds:(NSInteger)seconds;
+- (nonnull NSDate *)dateByAddingSeconds:(NSInteger)seconds;
+- (nonnull NSDate *)dateBySettingSeconds:(NSInteger)seconds;
 
-- (notnull NSDate *)dateByAddingWeeks:(NSInteger)weeks;
-- (notnull NSDate *)dateBySettingWeeks:(NSInteger)weeks;
+- (nonnull NSDate *)dateByAddingWeeks:(NSInteger)weeks;
+- (nonnull NSDate *)dateBySettingWeeks:(NSInteger)weeks;
 
-- (notnull NSDate *)dateByAddingDays:(NSInteger)days;
-- (notnull NSDate *)dateBySettingDays:(NSInteger)days;
+- (nonnull NSDate *)dateByAddingDays:(NSInteger)days;
+- (nonnull NSDate *)dateBySettingDays:(NSInteger)days;
 
-- (notnull NSDate *)dateBySettingWeekDay:(NSInteger)weekday;
+- (nonnull NSDate *)dateBySettingWeekDay:(NSInteger)weekday;
 
-- (notnull NSDate *)dateByAddingMonths:(NSInteger)months;
-- (notnull NSDate *)dateBySettingMonths:(NSInteger)months;
+- (nonnull NSDate *)dateByAddingMonths:(NSInteger)months;
+- (nonnull NSDate *)dateBySettingMonths:(NSInteger)months;
 
-- (notnull NSDate *)dateByAddingYears:(NSInteger)years;
-- (notnull NSDate *)dateBySettingYears:(NSInteger)years;
+- (nonnull NSDate *)dateByAddingYears:(NSInteger)years;
+- (nonnull NSDate *)dateBySettingYears:(NSInteger)years;
 
-- (notnull NSDate *)dateByAddingQuarters:(NSInteger)quarters;
-- (notnull NSDate *)dateBySettingQuarters:(NSInteger)quarters;
+- (nonnull NSDate *)dateByAddingQuarters:(NSInteger)quarters;
+- (nonnull NSDate *)dateBySettingQuarters:(NSInteger)quarters;
 
-- (notnull NSDate *)dateByAddingEras:(NSInteger)eras;
-- (notnull NSDate *)dateBySettingEras:(NSInteger)eras;
+- (nonnull NSDate *)dateByAddingEras:(NSInteger)eras;
+- (nonnull NSDate *)dateBySettingEras:(NSInteger)eras;
 
-- (notnull NSDate *)dateAtBeginningOfDay;
+- (nonnull NSDate *)dateAtBeginningOfDay;
 
-- (NSInteger)secondsFromDate:(notnull NSDate *)date;
-- (NSInteger)minutesFromDate:(notnull NSDate *)date;
-- (NSInteger)hoursFromDate:(notnull NSDate *)date;
-- (NSInteger)daysFromDate:(notnull NSDate *)date;
-- (NSInteger)weeksFromDate:(notnull NSDate *)date;
+- (NSInteger)secondsFromDate:(nonnull NSDate *)date;
+- (NSInteger)minutesFromDate:(nonnull NSDate *)date;
+- (NSInteger)hoursFromDate:(nonnull NSDate *)date;
+- (NSInteger)daysFromDate:(nonnull NSDate *)date;
+- (NSInteger)weeksFromDate:(nonnull NSDate *)date;
 
 - (BOOL)isBetweenDates:(nullable NSDate *)beginDate andDate:(nullable NSDate *)endDate;
 ```
@@ -93,20 +93,20 @@ Helper category for making the usage of NSDates easier
 
 ```objective-c
 
-+ (notnull instancetype)infiniteRange;
-+ (notnull instancetype)rangeFromDate:(nullable NSDate *)from toDate:(nullable NSDate *)to;
-+ (notnull instancetype)rangeFromDate:(nullable NSDate *)date;
-+ (notnull instancetype)rangeToDate:(nullable NSDate *)date;
++ (nonnull instancetype)infiniteRange;
++ (nonnull instancetype)rangeFromDate:(nullable NSDate *)from toDate:(nullable NSDate *)to;
++ (nonnull instancetype)rangeFromDate:(nullable NSDate *)date;
++ (nonnull instancetype)rangeToDate:(nullable NSDate *)date;
 ```
 
 ## Instance methods
 
 ```objective-c
-- (notnull instancetype)initWithFromDate:(nullable NSDate *)fromDate toDate:(nullable NSDate *)toDate;
-- (notnull instancetype)initWithFromDate:(nullable NSDate *)fromDate;
-- (notnull instancetype)initWithToDate:(nullable NSDate *)toDate;
+- (nonnull instancetype)initWithFromDate:(nullable NSDate *)fromDate toDate:(nullable NSDate *)toDate;
+- (nonnull instancetype)initWithFromDate:(nullable NSDate *)fromDate;
+- (nonnull instancetype)initWithToDate:(nullable NSDate *)toDate;
 
-- (BOOL)containsDate:(notnull NSDate *)date;
+- (BOOL)containsDate:(nonnull NSDate *)date;
 
 - (void)shiftWithSeconds:(NSInteger)seconds;
 - (void)shiftWithMinutes:(NSInteger)minutes;
@@ -116,7 +116,7 @@ Helper category for making the usage of NSDates easier
 - (void)shiftWithMonths:(NSInteger)months;
 - (void)shiftWithYears:(NSInteger)years;
 - (void)shiftWithEras:(NSInteger)eras;
-- (void)shiftWithComponents:(notnull NSDateComponentsBlock)componentsBlock;
+- (void)shiftWithComponents:(nonnull NSDateComponentsBlock)componentsBlock;
 ```
 
 ## Properties
