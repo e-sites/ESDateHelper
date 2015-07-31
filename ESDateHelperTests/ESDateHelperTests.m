@@ -121,6 +121,8 @@
 
 - (void)testShiftDateRange
 {
+    [ESDateRange init]; // Touch
+    
     NSDate *from = [NSDate dateWithTimeIntervalSinceNow:-100];
     NSDate *to = [NSDate dateWithTimeIntervalSinceNow:100];
     ESDateRange *r = [ESDateRange rangeFromDate:from toDate:to];
@@ -166,8 +168,22 @@
     difTo = [r.fromDate secondsFromDate:from];
     difFrom = [r.toDate secondsFromDate:to];
     XCTAssert(difTo == dif && difFrom == dif, @"Difference should be %zd (is %zd)", dif, difTo);
-
     
+    NSInteger mFrom = r.fromDate.month;
+    NSInteger mTo = r.toDate.month;
+    [r shiftWithMonths:4];
+    XCTAssert(mFrom != r.fromDate.month && mTo != r.toDate.month, @"Months should not be equal after shift");
+    
+    mFrom = r.fromDate.year;
+    mTo = r.toDate.year;
+    [r shiftWithYears:2];
+    XCTAssert(r.fromDate.year - mFrom == 2, @"Shift change should be 2 years");
+    
+    mFrom = r.fromDate.era;
+    mTo = r.toDate.era;
+    [r shiftWithEras:3];
+    XCTAssert(mFrom != r.fromDate.era && mTo != r.toDate.era, @"Eras should not be equal after shift");
+
 }
 
 - (void)testToday
@@ -203,6 +219,16 @@
     formatter = [NSDateFormatter dateFormatterWithDateFormat:NSDateFormatterFormatWeekDate timeStyle:NSDateFormatterTimeStyleNoMillis];
     rd = @"+0000-W11-3T12:55:16+0000";
     XCTAssertEqualObjects([formatter stringFromDate:d], rd);
+    
+    formatter = [NSDateFormatter dateFormatterWithDateFormat:NSDateFormatterFormatNone];
+    XCTAssertEqualObjects(formatter.dateFormat, @"", @"NSDateFormatterFormatNone format not empty");
+    
+    for (NSUInteger i = (NSUInteger)NSDateFormatterFormatBasic; i <= (NSUInteger)NSDateFormatterFormatWeekDate; i++) {
+        for (NSUInteger a = (NSUInteger)NSDateFormatterTimeStyleNone; a <= (NSUInteger)NSDateFormatterTimeStyleNoMillis; a++) {
+            formatter = [NSDateFormatter dateFormatterWithDateFormat:i timeStyle:a];
+            XCTAssertNotEqualObjects(formatter.dateFormat, @"", @"%i / %i should not be empty", i, a);
+        }
+    }
 }
 
 - (void)testESDateHelperYear

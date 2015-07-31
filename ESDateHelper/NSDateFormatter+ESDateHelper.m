@@ -79,6 +79,11 @@
             }
             return @"HH:mm:ss.SSS";
             
+        case NSDateFormatterFormatTime:
+            if (timeStyle == NSDateFormatterTimeStyleNoMillis) {
+                return @"HH:mm:ssZZ";
+            }
+            return @"HH:mm:ss.SSSZZ";
             
         case NSDateFormatterFormatOrdinalDate:
             if (timeStyle == NSDateFormatterTimeStyleTime) {
