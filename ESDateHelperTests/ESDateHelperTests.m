@@ -227,7 +227,7 @@
     for (NSUInteger i = (NSUInteger)NSDateFormatterFormatBasic; i <= (NSUInteger)NSDateFormatterFormatWeekDate; i++) {
         for (NSUInteger a = (NSUInteger)NSDateFormatterTimeStyleNone; a <= (NSUInteger)NSDateFormatterTimeStyleNoMillis; a++) {
             formatter = [NSDateFormatter dateFormatterWithDateFormat:i timeStyle:a];
-            XCTAssertNotEqualObjects(formatter.dateFormat, @"", @"%i / %i should not be empty", i, a);
+            XCTAssertNotEqualObjects(formatter.dateFormat, @"", @"%zd / %zd should not be empty", i, a);
         }
     }
 }
