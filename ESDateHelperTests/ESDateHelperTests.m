@@ -121,7 +121,7 @@
 
 - (void)testShiftDateRange
 {
-    [ESDateRange init]; // Touch
+    (void)[[ESDateRange alloc] init]; // Touch
     
     NSDate *from = [NSDate dateWithTimeIntervalSinceNow:-100];
     NSDate *to = [NSDate dateWithTimeIntervalSinceNow:100];
@@ -179,10 +179,10 @@
     [r shiftWithYears:2];
     XCTAssert(r.fromDate.year - mFrom == 2, @"Shift change should be 2 years");
     
-    mFrom = r.fromDate.era;
-    mTo = r.toDate.era;
-    [r shiftWithEras:3];
-    XCTAssert(mFrom != r.fromDate.era && mTo != r.toDate.era, @"Eras should not be equal after shift");
+    mFrom = r.fromDate.quarter;
+    mTo = r.toDate.quarter;
+    [r shiftWithQuarters:4];
+    XCTAssert(mFrom == r.fromDate.quarter && mTo == r.toDate.quarter, @"Quarters should not equal after shift (from: %zd / %zd, to: %zd / %zd)", mFrom, r.fromDate.quarter, mTo, r.toDate.quarter);
 
 }
 

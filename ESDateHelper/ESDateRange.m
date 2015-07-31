@@ -165,11 +165,11 @@
     });
 }
 
-- (void)shiftWithEras:(NSInteger)eras
+- (void)shiftWithQuarters:(NSInteger)quarters
 {
     ignorePreceedCheck(^{
-        self.fromDate = [self.fromDate dateByAddingEras:eras];
-        self.toDate = [self.toDate dateByAddingEras:eras];
+        self.fromDate = [self.fromDate dateByAddingQuarters:quarters];
+        self.toDate = [self.toDate dateByAddingQuarters:quarters];
     });
 }
 

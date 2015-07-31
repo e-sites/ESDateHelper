@@ -56,7 +56,7 @@
 		DF3E3CB01B6A28EE00A779CD /* ESDateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESDateHelper.m; sourceTree = "<group>"; };
 		DF3E3CB91B6A291400A779CD /* NSDateFormatter+ESDateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+ESDateHelper.h"; sourceTree = "<group>"; };
 		DF3E3CBA1B6A291400A779CD /* NSDateFormatter+ESDateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+ESDateHelper.m"; sourceTree = "<group>"; };
-		DF3E3CBE1B6A2D3300A779CD /* ESDateHelper-Nullable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ESDateHelper-Nullable.h"; sourceTree = "<group>"; };
+		DF3E3CC01B6B46F000A779CD /* ESDateHelper-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ESDateHelper-PrefixHeader.pch"; sourceTree = "<group>"; };
 		DF444DB31AAF18C400BB2721 /* ESDateHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ESDateHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF444DB71AAF18C400BB2721 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		DF444DBE1AAF18C400BB2721 /* ESDateHelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ESDateHelperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,7 +104,7 @@
 		DF444DB51AAF18C400BB2721 /* ESDateHelper */ = {
 			isa = PBXGroup;
 			children = (
-				DF3E3CBE1B6A2D3300A779CD /* ESDateHelper-Nullable.h */,
+				DF3E3CC01B6B46F000A779CD /* ESDateHelper-PrefixHeader.pch */,
 				DF0E35AF1B6A17660033406B /* NSDate+ESDateHelper.h */,
 				DF0E35B01B6A17660033406B /* NSDate+ESDateHelper.m */,
 				DF3E3CB91B6A291400A779CD /* NSDateFormatter+ESDateHelper.h */,
@@ -311,6 +311,7 @@
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "ESDateHelper/ESDateHelper-PrefixHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -357,6 +358,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_PREFIX_HEADER = "ESDateHelper/ESDateHelper-PrefixHeader.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

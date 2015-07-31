@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ESDateHelper-Nullable.h"
 #import "NSDate+ESDatehelper.h"
 
 @interface ESDateRange : NSObject
@@ -171,6 +170,6 @@
 - (void)shiftWithWeeks:(NSInteger)weeks;
 - (void)shiftWithMonths:(NSInteger)months;
 - (void)shiftWithYears:(NSInteger)years;
-- (void)shiftWithEras:(NSInteger)eras;
+- (void)shiftWithQuarters:(NSInteger)quarters;
 - (void)shiftWithComponents:(ES_NOTNULLABLE NSDateComponentsBlock)componentsBlock;
 @end
