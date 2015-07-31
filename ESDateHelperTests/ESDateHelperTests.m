@@ -353,11 +353,32 @@
     date = [date dateBySettingWeeks:2];
     date = [date dateByAddingEras:2];
     date = [date dateBySettingEras:1];
+    date = [date dateBySettingQuarters:2];
     
     date = [date dateOfFirstDayOfFirstWeekForWeekDay:1];
     XCTAssertEqual(date.weekday, 1);
     date = [date dateByAddingWeeks:1];
     XCTAssert(date.weekOfMonth == 1 || date.weekOfMonth == 2, "date.weekOfMonth = %zd", date.weekOfMonth);
+    
+    
+    NSDate *bdate = [[NSDate date] dateAtBeginningOfDay];
+    NSUInteger h = 11;
+    NSUInteger m = 36;
+    NSUInteger s = 9;
+    date = [[NSDate date] dateBySettingComponents:^(NSDateComponents * _Nonnull comp) {
+        comp.hour = h;
+        comp.minute = m;
+        comp.second = s;
+    }];
+    
+    XCTAssertEqual([date hoursFromDate:bdate], h);
+    XCTAssertEqual([date minutesFromDate:bdate], (h * 60) + m);
+    XCTAssertEqual([date secondsFromDate:bdate], (h * 60 * 60) + (m * 60) + s);
+    
+    NSUInteger d = 17;
+    date = [date dateByAddingDays:d];
+    XCTAssertEqual([date daysFromDate:bdate], d);
+    XCTAssertEqual([date weeksFromDate:bdate], 2);
 }
 
 @end
