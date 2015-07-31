@@ -1,13 +1,10 @@
 //
-//  ESDateHelper-PrefixHeader.pch
+//  ESDateHelper-Include.h
 //  ESDateHelper
 //
 //  Created by Bas van Kuijck on 31-07-15.
 //  Copyright © 2015 e-sites. All rights reserved.
 //
-
-#ifndef ESDateHelper_PrefixHeader_pch
-#define ESDateHelper_PrefixHeader_pch
 
 /**
  *  @definedblock nullable / nonull helpers
@@ -23,12 +20,14 @@
 #   define ES_NOTNULLABLE nonnull
 #   define ES_NULLABLE_PROPERTY ES_NULLABLE,
 #   define ES_NOTNULLABLE_PROPERTY ES_NOTNULLABLE,
+#   define ES_NOTNULLABLE_PARAMETER _Nonnull
+#   define ES_NULLABLE_PARAMETER _Nullable
 #else
 #   define ES_NULLABLE_PROPERTY
 #   define ES_NOTNULLABLE_PROPERTY
 #   define ES_NULLABLE
 #   define ES_NOTNULLABLE
+#   define ES_NOTNULLABLE_PARAMETER
+#   define ES_NULLABLE_PARAMETER
 #endif
 /*! @/definedblock */
-
-#endif

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ESDateHelper-Include.h"
 
 @interface NSDate (ESDateHelper)
 
@@ -27,52 +28,52 @@
 
 + (BOOL)isLeapYear:(NSInteger)year;
 
-typedef void (^NSDateComponentsBlock)(NSDateComponents *comp);
+typedef void (^NSDateComponentsBlock)(NSDateComponents *ES_NOTNULLABLE_PARAMETER comp);
 
-- (BOOL)isSameDay:(NSDate *)date;
+- (BOOL)isSameDay:(ES_NOTNULLABLE NSDate *)date;
 
-- (NSDate *)dateByAddingComponents:(NSDateComponentsBlock)block;
-- (NSDate *)dateBySettingComponents:(NSDateComponentsBlock)block;
+- (ES_NOTNULLABLE NSDate *)dateByAddingComponents:(ES_NOTNULLABLE NSDateComponentsBlock)block;
+- (ES_NOTNULLABLE NSDate *)dateBySettingComponents:(ES_NOTNULLABLE NSDateComponentsBlock)block;
 
-- (NSDate *)dateByAddingHours:(NSInteger)hours;
-- (NSDate *)dateBySettingHours:(NSInteger)hours;
+- (ES_NOTNULLABLE NSDate *)dateByAddingHours:(NSInteger)hours;
+- (ES_NOTNULLABLE NSDate *)dateBySettingHours:(NSInteger)hours;
 
-- (NSDate *)dateByAddingMinutes:(NSInteger)minutes;
-- (NSDate *)dateBySettingMinutes:(NSInteger)minutes;
+- (ES_NOTNULLABLE NSDate *)dateByAddingMinutes:(NSInteger)minutes;
+- (ES_NOTNULLABLE NSDate *)dateBySettingMinutes:(NSInteger)minutes;
 
-- (NSDate *)dateByAddingSeconds:(NSInteger)seconds;
-- (NSDate *)dateBySettingSeconds:(NSInteger)seconds;
+- (ES_NOTNULLABLE NSDate *)dateByAddingSeconds:(NSInteger)seconds;
+- (ES_NOTNULLABLE NSDate *)dateBySettingSeconds:(NSInteger)seconds;
 
-- (NSDate *)dateByAddingWeeks:(NSInteger)weeks;
-- (NSDate *)dateBySettingWeeks:(NSInteger)weeks;
+- (ES_NOTNULLABLE NSDate *)dateByAddingWeeks:(NSInteger)weeks;
+- (ES_NOTNULLABLE NSDate *)dateBySettingWeeks:(NSInteger)weeks;
 
-- (NSDate *)dateByAddingDays:(NSInteger)days;
-- (NSDate *)dateBySettingDays:(NSInteger)days;
+- (ES_NOTNULLABLE NSDate *)dateByAddingDays:(NSInteger)days;
+- (ES_NOTNULLABLE NSDate *)dateBySettingDays:(NSInteger)days;
 
-- (NSDate *)dateBySettingWeekDay:(NSInteger)weekday;
+- (ES_NOTNULLABLE NSDate *)dateBySettingWeekDay:(NSInteger)weekday;
 
-- (NSDate *)dateByAddingMonths:(NSInteger)months;
-- (NSDate *)dateBySettingMonths:(NSInteger)months;
+- (ES_NOTNULLABLE NSDate *)dateByAddingMonths:(NSInteger)months;
+- (ES_NOTNULLABLE NSDate *)dateBySettingMonths:(NSInteger)months;
 
-- (NSDate *)dateByAddingYears:(NSInteger)years;
-- (NSDate *)dateBySettingYears:(NSInteger)years;
+- (ES_NOTNULLABLE NSDate *)dateByAddingYears:(NSInteger)years;
+- (ES_NOTNULLABLE NSDate *)dateBySettingYears:(NSInteger)years;
 
-- (NSDate *)dateByAddingQuarters:(NSInteger)quarters;
-- (NSDate *)dateBySettingQuarters:(NSInteger)quarters;
+- (ES_NOTNULLABLE NSDate *)dateByAddingQuarters:(NSInteger)quarters;
+- (ES_NOTNULLABLE NSDate *)dateBySettingQuarters:(NSInteger)quarters;
 
-- (NSDate *)dateByAddingEras:(NSInteger)eras;
-- (NSDate *)dateBySettingEras:(NSInteger)eras;
+- (ES_NOTNULLABLE NSDate *)dateByAddingEras:(NSInteger)eras;
+- (ES_NOTNULLABLE NSDate *)dateBySettingEras:(NSInteger)eras;
 
-- (NSDate *)dateAtBeginningOfDay;
+- (ES_NOTNULLABLE NSDate *)dateAtBeginningOfDay;
 
-- (NSDate *)dateOfFirstDayOfFirstWeekForWeekDay:(NSInteger)weekday;
+- (ES_NOTNULLABLE NSDate *)dateOfFirstDayOfFirstWeekForWeekDay:(NSInteger)weekday;
 
-- (NSInteger)secondsFromDate:(NSDate *)date;
-- (NSInteger)minutesFromDate:(NSDate *)date;
-- (NSInteger)hoursFromDate:(NSDate *)date;
-- (NSInteger)daysFromDate:(NSDate *)date;
-- (NSInteger)weeksFromDate:(NSDate *)date;
+- (NSInteger)secondsFromDate:(ES_NOTNULLABLE NSDate *)date;
+- (NSInteger)minutesFromDate:(ES_NOTNULLABLE NSDate *)date;
+- (NSInteger)hoursFromDate:(ES_NOTNULLABLE NSDate *)date;
+- (NSInteger)daysFromDate:(ES_NOTNULLABLE NSDate *)date;
+- (NSInteger)weeksFromDate:(ES_NOTNULLABLE NSDate *)date;
 
-- (BOOL)isBetweenDates:(NSDate *)beginDate andDate:(NSDate *)endDate;
+- (BOOL)isBetweenDates:(ES_NULLABLE NSDate *)beginDate andDate:(ES_NULLABLE NSDate *)endDate;
 
 @end

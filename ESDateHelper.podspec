@@ -8,6 +8,5 @@ Pod::Spec.new do |s|
   s.homepage       = "https://github.com/e-sites/ESDateHelper"
   s.source         = { :git => "https://github.com/e-sites/ESDateHelper.git", :tag => s.version.to_s }
   s.source_files   = "ESDateHelper/*.{h,m}"
-  s.prefix_header_file = "ESDateHelper/ESDateHelper-PrefixHeader.pch"
   s.requires_arc   = true
 end

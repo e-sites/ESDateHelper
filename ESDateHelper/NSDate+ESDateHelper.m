@@ -46,102 +46,102 @@ typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
     return [self.class isLeapYear:self.year];
 }
 
-- (NSDate *)dateByAddingHours:(NSInteger)hours
+- (ES_NOTNULLABLE NSDate *)dateByAddingHours:(NSInteger)hours
 {
     return _dateAdd(self, _ESDateComponentFlagHour, hours);
 }
 
-- (NSDate *)dateBySettingHours:(NSInteger)hours
+- (ES_NOTNULLABLE NSDate *)dateBySettingHours:(NSInteger)hours
 {
     return _dateSet(self, _ESDateComponentFlagHour, hours);
 }
 
-- (NSDate *)dateByAddingMinutes:(NSInteger)minutes
+- (ES_NOTNULLABLE NSDate *)dateByAddingMinutes:(NSInteger)minutes
 {
     return _dateAdd(self, _ESDateComponentFlagMinute, minutes);
 }
 
-- (NSDate *)dateBySettingMinutes:(NSInteger)minutes
+- (ES_NOTNULLABLE NSDate *)dateBySettingMinutes:(NSInteger)minutes
 {
     return _dateSet(self, _ESDateComponentFlagMinute, minutes);
 }
 
-- (NSDate *)dateByAddingSeconds:(NSInteger)seconds
+- (ES_NOTNULLABLE NSDate *)dateByAddingSeconds:(NSInteger)seconds
 {
     return _dateAdd(self, _ESDateComponentFlagSecond, seconds);
 }
 
-- (NSDate *)dateBySettingSeconds:(NSInteger)seconds
+- (ES_NOTNULLABLE NSDate *)dateBySettingSeconds:(NSInteger)seconds
 {
     return _dateSet(self, _ESDateComponentFlagSecond, seconds);
 }
 
-- (NSDate *)dateByAddingDays:(NSInteger)days
+- (ES_NOTNULLABLE NSDate *)dateByAddingDays:(NSInteger)days
 {
     return _dateAdd(self, _ESDateComponentFlagDay, days);
 }
 
-- (NSDate *)dateBySettingDays:(NSInteger)days
+- (ES_NOTNULLABLE NSDate *)dateBySettingDays:(NSInteger)days
 {
     return _dateSet(self, _ESDateComponentFlagDay, days);
 }
 
-- (NSDate *)dateBySettingWeekDay:(NSInteger)weekday
+- (ES_NOTNULLABLE NSDate *)dateBySettingWeekDay:(NSInteger)weekday
 {
     return _dateSet(self, _ESDateComponentFlagDay, self.day - (self.weekday - weekday));
 }
 
-- (NSDate *)dateByAddingWeeks:(NSInteger)weeks
+- (ES_NOTNULLABLE NSDate *)dateByAddingWeeks:(NSInteger)weeks
 {
     return _dateAdd(self, _ESDateComponentFlagWeek, weeks);
 }
 
-- (NSDate *)dateBySettingWeeks:(NSInteger)weeks
+- (ES_NOTNULLABLE NSDate *)dateBySettingWeeks:(NSInteger)weeks
 {
     return _dateSet(self, _ESDateComponentFlagWeek, weeks);
 }
 
-- (NSDate *)dateByAddingMonths:(NSInteger)months
+- (ES_NOTNULLABLE NSDate *)dateByAddingMonths:(NSInteger)months
 {
     return _dateAdd(self, _ESDateComponentFlagMonth, months);
 }
 
-- (NSDate *)dateBySettingMonths:(NSInteger)months
+- (ES_NOTNULLABLE NSDate *)dateBySettingMonths:(NSInteger)months
 {
     return _dateSet(self, _ESDateComponentFlagMonth, months);
 }
 
-- (NSDate *)dateByAddingYears:(NSInteger)years
+- (ES_NOTNULLABLE NSDate *)dateByAddingYears:(NSInteger)years
 {
     return _dateAdd(self, _ESDateComponentFlagYear, years);
 }
 
-- (NSDate *)dateBySettingYears:(NSInteger)years
+- (ES_NOTNULLABLE NSDate *)dateBySettingYears:(NSInteger)years
 {
     return _dateSet(self, _ESDateComponentFlagYear, years);
 }
 
-- (NSDate *)dateByAddingQuarters:(NSInteger)quarters
+- (ES_NOTNULLABLE NSDate *)dateByAddingQuarters:(NSInteger)quarters
 {
     return _dateAdd(self, _ESDateComponentFlagQuarter, quarters);
 }
 
-- (NSDate *)dateBySettingQuarters:(NSInteger)quarters
+- (ES_NOTNULLABLE NSDate *)dateBySettingQuarters:(NSInteger)quarters
 {
     return _dateSet(self, _ESDateComponentFlagQuarter, quarters);
 }
 
-- (NSDate *)dateByAddingEras:(NSInteger)eras
+- (ES_NOTNULLABLE NSDate *)dateByAddingEras:(NSInteger)eras
 {
     return _dateAdd(self, _ESDateComponentFlagEra, eras);
 }
 
-- (NSDate *)dateBySettingEras:(NSInteger)eras
+- (ES_NOTNULLABLE NSDate *)dateBySettingEras:(NSInteger)eras
 {
     return _dateSet(self, _ESDateComponentFlagEra, eras);
 }
 
-- (NSDate *)dateAtBeginningOfDay
+- (ES_NOTNULLABLE NSDate *)dateAtBeginningOfDay
 {
     return [self dateBySettingComponents:^(NSDateComponents *comp) {
         comp.hour = 0;
@@ -150,7 +150,7 @@ typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
     }];
 }
 
-- (NSDate *)dateOfFirstDayOfFirstWeekForWeekDay:(NSInteger)weekday
+- (ES_NOTNULLABLE NSDate *)dateOfFirstDayOfFirstWeekForWeekDay:(NSInteger)weekday
 {
     NSDate *date = [self dateBySettingComponents:^(NSDateComponents *comp) {
         comp.hour = 0;
@@ -231,7 +231,7 @@ typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
     return comp.month;
 }
 
-- (NSInteger)secondsFromDate:(NSDate *)date
+- (NSInteger)secondsFromDate:(ES_NOTNULLABLE NSDate *)date
 {
     NSInteger dif = [self timeIntervalSinceDate:date];
     NSTimeZone *timezone = [NSTimeZone defaultTimeZone];
@@ -243,22 +243,22 @@ typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
     return dif;
 }
 
-- (NSInteger)minutesFromDate:(NSDate *)date
+- (NSInteger)minutesFromDate:(ES_NOTNULLABLE NSDate *)date
 {
     return [self secondsFromDate:date] / 60;
 }
 
-- (NSInteger)hoursFromDate:(NSDate *)date
+- (NSInteger)hoursFromDate:(ES_NOTNULLABLE NSDate *)date
 {
     return [self minutesFromDate:date] / 60;
 }
 
-- (NSInteger)daysFromDate:(NSDate *)date
+- (NSInteger)daysFromDate:(ES_NOTNULLABLE NSDate *)date
 {
     return [self hoursFromDate:date] / 24;
 }
 
-- (NSInteger)weeksFromDate:(NSDate *)date
+- (NSInteger)weeksFromDate:(ES_NOTNULLABLE NSDate *)date
 {
     return [self daysFromDate:date] / 7;
 }
@@ -272,7 +272,7 @@ typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
     return ((year % 100 != 0) && (year % 4 == 0)) || year % 400 == 0;
 }
 
-- (BOOL)isSameDay:(NSDate *)date
+- (BOOL)isSameDay:(ES_NOTNULLABLE NSDate *)date
 {
     NSDateComponents *otherDay = _dateComponent(_ESDateComponentFlagNone, self, 0);
     NSDateComponents *today = _dateComponent(_ESDateComponentFlagNone, date, 0);
@@ -282,7 +282,7 @@ typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
             [today era] == [otherDay era]);
 }
 
-- (NSDate *)dateByAddingComponents:(NSDateComponentsBlock)block
+- (ES_NOTNULLABLE NSDate *)dateByAddingComponents:(ES_NOTNULLABLE NSDateComponentsBlock)block
 {
     if (block == nil) {
         return [self dateByAddingDays:0];
@@ -292,7 +292,7 @@ typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
     return [[NSCalendar currentCalendar] dateByAddingComponents:comp toDate:self options:0];
 }
 
-- (NSDate *)dateBySettingComponents:(NSDateComponentsBlock)block
+- (ES_NOTNULLABLE NSDate *)dateBySettingComponents:(ES_NOTNULLABLE NSDateComponentsBlock)block
 {
     if (block == nil) {
         return [self dateByAddingDays:0];
@@ -303,7 +303,7 @@ typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
     return [[NSCalendar currentCalendar] dateFromComponents:comp];
 }
 
-- (BOOL)isBetweenDates:(NSDate *)beginDate andDate:(NSDate *)endDate
+- (BOOL)isBetweenDates:(ES_NULLABLE NSDate *)beginDate andDate:(ES_NULLABLE NSDate *)endDate
 {
     ESDateRange *range = [ESDateRange rangeFromDate:beginDate toDate:endDate];
     return [range containsDate:self];
