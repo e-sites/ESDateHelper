@@ -11,10 +11,13 @@
 
 @interface NSDate (ESDateHelper)
 
-@property (nonatomic, readonly) NSInteger hour;
-@property (nonatomic, readonly) NSInteger minute;
+@property (nonatomic, readonly) NSInteger hour DEPRECATED_MSG_ATTRIBUTE("Since 2.0. Use hours property instead.");
+@property (nonatomic, readonly) NSInteger hours;
+@property (nonatomic, readonly) NSInteger minute DEPRECATED_MSG_ATTRIBUTE("Since 2.0. Use minutes property instead.");
+@property (nonatomic, readonly) NSInteger minutes;
+@property (nonatomic, readonly) NSInteger second DEPRECATED_MSG_ATTRIBUTE("Since 2.0. Use seconds property instead.");
+@property (nonatomic, readonly) NSInteger seconds;
 @property (nonatomic, readonly) NSInteger day;
-@property (nonatomic, readonly) NSInteger second;
 @property (nonatomic, readonly) NSInteger week;
 @property (nonatomic, readonly) NSInteger weekday;
 @property (nonatomic, readonly) NSInteger year;

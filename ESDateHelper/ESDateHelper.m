@@ -55,9 +55,9 @@
     }
     NSAssert(d != nil, @"Unknown time format for '%@', should by NSDateFormatterShortStyle or NSDateFormatterMediumStyle", time);
     NSDate *now = [[NSDate date] dateBySettingComponents:^(NSDateComponents *comp) {
-        comp.hour = d.hour;
-        comp.second = d.second;
-        comp.minute = d.minute;
+        comp.hour = d.hours;
+        comp.second = d.seconds;
+        comp.minute = d.minutes;
     }];
     return [[NSDate date] compare:now] == NSOrderedDescending;
 }

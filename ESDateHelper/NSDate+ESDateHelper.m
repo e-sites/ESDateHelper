@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
 
 @implementation NSDate (ESDateHelper)
 
-@dynamic hour,minute,second,era,year,month,week,weekday,today,leapYear,day,weekOfMonth;
+@dynamic era,year,month,week,weekday,today,leapYear,day,weekOfMonth,hours,minutes,seconds,minute,hour,second;
 
 #pragma mark - NSDate Extension
 // ____________________________________________________________________________________________________________________
@@ -165,7 +165,7 @@ typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
     return [date dateByAddingDays:-dif];
 }
 
-- (NSInteger)hour
+- (NSInteger)hours
 {
     NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitHour fromDate:self];
     return comp.hour;
@@ -177,13 +177,13 @@ typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
     return comp.weekOfMonth;
 }
 
-- (NSInteger)minute
+- (NSInteger)minutes
 {
     NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitMinute fromDate:self];
     return comp.minute;
 }
 
-- (NSInteger)second
+- (NSInteger)seconds
 {
     NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitSecond fromDate:self];
     return comp.second;

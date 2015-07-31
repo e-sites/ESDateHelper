@@ -21,12 +21,13 @@
 
 - (void)setUp {
     [super setUp];
+    [NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+    
     fm = [[NSDateFormatter alloc] init];
     [fm setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     date = [fm dateFromString:@"2014-05-09 15:10:05"];
     
     
-    [NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
 }
 
 - (void)tearDown {
@@ -58,9 +59,9 @@
 
 - (void)testTimeInPast
 {
-    NSInteger hours = [[NSDate date] hour];
-    NSInteger minutes = [[NSDate date] minute];
-    NSInteger seconds = [[NSDate date] second];
+    NSInteger hours = [[NSDate date] hours];
+    NSInteger minutes = [[NSDate date] minutes];
+    NSInteger seconds = [[NSDate date] seconds];
     seconds--;
     if (seconds == -1) {
         seconds = 59;
@@ -258,19 +259,19 @@
 - (void)testESDateHelperHour
 {
     NSInteger expectedValue = 15;
-    XCTAssertTrue(date.hour == expectedValue, @"Hour is '%zd', expected '%zd'", date.hour, expectedValue);
+    XCTAssertTrue(date.hours == expectedValue, @"Hour is '%zd', expected '%zd'", date.hours, expectedValue);
 }
 
 - (void)testESDateHelperMinute
 {
     NSInteger expectedValue = 10;
-    XCTAssertTrue(date.minute == expectedValue, @"Minute is '%zd', expected '%zd'", date.minute, expectedValue);
+    XCTAssertTrue(date.minutes == expectedValue, @"Minute is '%zd', expected '%zd'", date.minutes, expectedValue);
 }
 
 - (void)testESDateHelperSecond
 {
     NSInteger expectedValue = 5;
-    XCTAssertTrue(date.second == expectedValue, @"Second is '%zd', expected '%zd'", date.second, expectedValue);
+    XCTAssertTrue(date.seconds == expectedValue, @"Second is '%zd', expected '%zd'", date.seconds, expectedValue);
 }
 
 - (void)testESDateHelperAdding
@@ -333,6 +334,30 @@
         str = [@[ spl[0], spl[1], spl[2], spl[3], spl[4] ] componentsJoinedByString:@" "];
     }
     XCTAssertTrue([str isEqualToString:expectedDateValue], @"Date is '%@', expected '%@'", str, expectedDateValue);
+}
+
+- (void)testESDateHelperMiscTests
+{
+    date = [date dateBySettingHours:14];
+    [fm setDateFormat:@"H"];
+    XCTAssertEqualObjects([fm stringFromDate:date], @"14");
+    
+    date = [date dateBySettingMinutes:59];
+    [fm setDateFormat:@"m"];
+    XCTAssertEqualObjects([fm stringFromDate:date], @"59");
+    
+    date = [date dateBySettingSeconds:33];
+    [fm setDateFormat:@"H:m:s"];
+    XCTAssertEqualObjects([fm stringFromDate:date], @"14:59:33");
+    
+    date = [date dateBySettingWeeks:2];
+    date = [date dateByAddingEras:2];
+    date = [date dateBySettingEras:1];
+    
+    date = [date dateOfFirstDayOfFirstWeekForWeekDay:1];
+    XCTAssertEqual(date.weekday, 1);
+    date = [date dateByAddingWeeks:1];
+    XCTAssert(date.weekOfMonth == 1 || date.weekOfMonth == 2, "date.weekOfMonth = %zd", date.weekOfMonth);
 }
 
 @end
