@@ -13,6 +13,8 @@
  *  @define ES_NOTNULLABLE nonnull (>= iOS9)
  *  @define ES_NULLABLE_PROPERTY nullable, (>= iOS9)
  *  @define ES_NOTNULLABLE_PROPERTY nonnull, (>= iOS9)
+ *  @define ES_NOTNULLABLE_PARAMETER _Nonnull, (>= iOS9)
+ *  @define ES_NULLABLE_PARAMETER _Nullable, (>= iOS9)
  *	@parseOnly
  */
 #ifdef __IPHONE_9_0
