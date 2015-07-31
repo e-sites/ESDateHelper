@@ -1,7 +1,7 @@
 # ESDateHelper
 
 [![Build](https://travis-ci.org/e-sites/ESDateHelper.svg)](https://travis-ci.org/e-sites/ESDateHelper)
-[![Coverage Status](https://coveralls.io/repos/e-sites/ESDateHelper/badge.svg?branch=master&service=github&cacheBuster=123)](https://coveralls.io/github/e-sites/ESDateHelper?branch=master)
+[![Coverage Status](https://coveralls.io/repos/e-sites/ESDateHelper/badge.svg?branch=master&service=github&cacheBuster=1234)](https://coveralls.io/github/e-sites/ESDateHelper?branch=master)
 [![Platform](https://cocoapod-badges.herokuapp.com/p/ESDateHelper/badge.png)](http://cocoadocs.org/docsets/ESDateHelper)
 [![Version](https://cocoapod-badges.herokuapp.com/v/ESDateHelper/badge.png)](http://cocoadocs.org/docsets/ESDateHelper)
 
