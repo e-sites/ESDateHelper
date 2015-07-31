@@ -365,7 +365,7 @@
     NSUInteger h = 11;
     NSUInteger m = 36;
     NSUInteger s = 9;
-    date = [[NSDate date] dateBySettingComponents:^(NSDateComponents * _Nonnull comp) {
+    date = [[NSDate date] dateBySettingComponents:^(NSDateComponents *ES_NOTNULLABLE_PARAMETER comp) {
         comp.hour = h;
         comp.minute = m;
         comp.second = s;

@@ -54,7 +54,7 @@
         }
     }
     NSAssert(d != nil, @"Unknown time format for '%@', should by NSDateFormatterShortStyle or NSDateFormatterMediumStyle", time);
-    NSDate *now = [[NSDate date] dateBySettingComponents:^(NSDateComponents *comp) {
+    NSDate *now = [[NSDate date] dateBySettingComponents:^(NSDateComponents *ES_NOTNULLABLE_PARAMETER comp) {
         comp.hour = d.hours;
         comp.second = d.seconds;
         comp.minute = d.minutes;
