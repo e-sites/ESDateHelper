@@ -10,7 +10,7 @@ Helper category for making the usage of NSDates easier
 ## Class methods
 ```objective-c
 + (BOOL)is24HourNotation;
-+ (BOOL)isTimeInPast:(NSString *)time;
++ (BOOL)isTimeInPast:(notnull NSString *)time;
 ```
 
 # NSDate category
@@ -23,10 +23,10 @@ Helper category for making the usage of NSDates easier
 ## Properties
 
 ```objective-c
-@property (nonatomic, readonly) NSInteger hour;
-@property (nonatomic, readonly) NSInteger minute;
+@property (nonatomic, readonly) NSInteger hours;
+@property (nonatomic, readonly) NSInteger minutes;
 @property (nonatomic, readonly) NSInteger day;
-@property (nonatomic, readonly) NSInteger second;
+@property (nonatomic, readonly) NSInteger seconds;
 @property (nonatomic, readonly) NSInteger week;
 @property (nonatomic, readonly) NSInteger weekday;
 @property (nonatomic, readonly) NSInteger year;
@@ -44,47 +44,47 @@ Helper category for making the usage of NSDates easier
 ```objective-c
 - (BOOL)isSameDay:(NSDate *)date;
 
-- (NSDate *)dateByAddingComponents:(NSDateComponentsBlock)block;
-- (NSDate *)dateBySettingComponents:(NSDateComponentsBlock)block;
+- (notnull NSDate *)dateByAddingComponents:(NSDateComponentsBlock)block;
+- (notnull NSDate *)dateBySettingComponents:(NSDateComponentsBlock)block;
 
-- (NSDate *)dateByAddingHours:(NSInteger)hours;
-- (NSDate *)dateBySettingHours:(NSInteger)hours;
+- (notnull NSDate *)dateByAddingHours:(NSInteger)hours;
+- (notnull NSDate *)dateBySettingHours:(NSInteger)hours;
 
-- (NSDate *)dateByAddingMinutes:(NSInteger)minutes;
-- (NSDate *)dateBySettingMinutes:(NSInteger)minutes;
+- (notnull NSDate *)dateByAddingMinutes:(NSInteger)minutes;
+- (notnull NSDate *)dateBySettingMinutes:(NSInteger)minutes;
 
-- (NSDate *)dateByAddingSeconds:(NSInteger)seconds;
-- (NSDate *)dateBySettingSeconds:(NSInteger)seconds;
+- (notnull NSDate *)dateByAddingSeconds:(NSInteger)seconds;
+- (notnull NSDate *)dateBySettingSeconds:(NSInteger)seconds;
 
-- (NSDate *)dateByAddingWeeks:(NSInteger)weeks;
-- (NSDate *)dateBySettingWeeks:(NSInteger)weeks;
+- (notnull NSDate *)dateByAddingWeeks:(NSInteger)weeks;
+- (notnull NSDate *)dateBySettingWeeks:(NSInteger)weeks;
 
-- (NSDate *)dateByAddingDays:(NSInteger)days;
-- (NSDate *)dateBySettingDays:(NSInteger)days;
+- (notnull NSDate *)dateByAddingDays:(NSInteger)days;
+- (notnull NSDate *)dateBySettingDays:(NSInteger)days;
 
-- (NSDate *)dateBySettingWeekDay:(NSInteger)weekday;
+- (notnull NSDate *)dateBySettingWeekDay:(NSInteger)weekday;
 
-- (NSDate *)dateByAddingMonths:(NSInteger)months;
-- (NSDate *)dateBySettingMonths:(NSInteger)months;
+- (notnull NSDate *)dateByAddingMonths:(NSInteger)months;
+- (notnull NSDate *)dateBySettingMonths:(NSInteger)months;
 
-- (NSDate *)dateByAddingYears:(NSInteger)years;
-- (NSDate *)dateBySettingYears:(NSInteger)years;
+- (notnull NSDate *)dateByAddingYears:(NSInteger)years;
+- (notnull NSDate *)dateBySettingYears:(NSInteger)years;
 
-- (NSDate *)dateByAddingQuarters:(NSInteger)quarters;
-- (NSDate *)dateBySettingQuarters:(NSInteger)quarters;
+- (notnull NSDate *)dateByAddingQuarters:(NSInteger)quarters;
+- (notnull NSDate *)dateBySettingQuarters:(NSInteger)quarters;
 
-- (NSDate *)dateByAddingEras:(NSInteger)eras;
-- (NSDate *)dateBySettingEras:(NSInteger)eras;
+- (notnull NSDate *)dateByAddingEras:(NSInteger)eras;
+- (notnull NSDate *)dateBySettingEras:(NSInteger)eras;
 
-- (NSDate *)dateAtBeginningOfDay;
+- (notnull NSDate *)dateAtBeginningOfDay;
 
-- (NSInteger)secondsFromDate:(NSDate *)date;
-- (NSInteger)minutesFromDate:(NSDate *)date;
-- (NSInteger)hoursFromDate:(NSDate *)date;
-- (NSInteger)daysFromDate:(NSDate *)date;
-- (NSInteger)weeksFromDate:(NSDate *)date;
+- (NSInteger)secondsFromDate:(notnull NSDate *)date;
+- (NSInteger)minutesFromDate:(notnull NSDate *)date;
+- (NSInteger)hoursFromDate:(notnull NSDate *)date;
+- (NSInteger)daysFromDate:(notnull NSDate *)date;
+- (NSInteger)weeksFromDate:(notnull NSDate *)date;
 
-- (BOOL)isBetweenDates:(NSDate *)beginDate andDate:(NSDate *)endDate;
+- (BOOL)isBetweenDates:(nullable NSDate *)beginDate andDate:(nullable NSDate *)endDate;
 ```
 
 # ESDateRange class
