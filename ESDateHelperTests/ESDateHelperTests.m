@@ -355,8 +355,10 @@
     date = [date dateBySettingEras:1];
     date = [date dateBySettingQuarters:2];
     
-    date = [date dateOfFirstDayOfFirstWeekForWeekDay:1];
-    XCTAssertEqual(date.weekday, 1);
+    for (NSUInteger i = 1; i < 8; i++) {
+        date = [date dateOfFirstDayOfFirstWeekForWeekDay:i];
+        XCTAssertEqual(date.weekday, i);
+    }
     date = [date dateByAddingWeeks:1];
     XCTAssert(date.weekOfMonth == 1 || date.weekOfMonth == 2, "date.weekOfMonth = %zd", date.weekOfMonth);
     
