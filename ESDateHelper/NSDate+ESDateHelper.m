@@ -150,6 +150,15 @@ typedef NS_ENUM(NSInteger, _ESDateComponentFlag) {
     }];
 }
 
+- (ES_NOTNULLABLE NSDate *)dateAtEndingOfDay
+{
+    return [self dateBySettingComponents:^(NSDateComponents *comp) {
+        comp.hour = 23;
+        comp.second = 59;
+        comp.minute = 59;
+    }];
+}
+
 - (ES_NOTNULLABLE NSDate *)dateOfFirstDayOfFirstWeekForWeekDay:(NSInteger)weekday
 {
     NSDate *date = [self dateBySettingComponents:^(NSDateComponents *comp) {

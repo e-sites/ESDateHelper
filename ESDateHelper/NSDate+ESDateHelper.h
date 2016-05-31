@@ -68,6 +68,7 @@ typedef void (^NSDateComponentsBlock)(NSDateComponents *ES_NOTNULLABLE_PARAMETER
 - (ES_NOTNULLABLE NSDate *)dateBySettingEras:(NSInteger)eras;
 
 - (ES_NOTNULLABLE NSDate *)dateAtBeginningOfDay;
+- (ES_NOTNULLABLE NSDate *)dateAtEndingOfDay;
 
 - (ES_NOTNULLABLE NSDate *)dateOfFirstDayOfFirstWeekForWeekDay:(NSInteger)weekday;
 

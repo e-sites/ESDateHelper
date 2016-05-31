@@ -193,6 +193,9 @@
     XCTAssert([d isToday], @"Date should be today (%@)", d);
     
     XCTAssert([d isInCurrentWeek], @"Date should be in current week (%@)", d);
+    
+    NSDate *t = [[[NSDate date] dateAtEndingOfDay] dateByAddingSeconds:5];
+    XCTAssert(![t isToday]);
 }
 
 - (void)testDateFormats
