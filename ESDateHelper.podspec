@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name           = "ESDateHelper"
-  s.version        = "2.0"
+  s.version        = "2.0.1"
   s.platform       = :ios, "6.0"
   s.summary        = "Helper category for making the usage of NSDates easier"
   s.author         = { "Bas van Kuijck" => "bas@e-sites.nl" }
